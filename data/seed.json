@@ -1,0 +1,4232 @@
+{
+  "pharmacy_id": "akopharmah",
+  "pharmacy": "Akopharmah",
+  "version": 1,
+  "branches": [
+    {
+      "id": "kwame-danso-main",
+      "name": "Kwame Danso Main"
+    },
+    {
+      "id": "kwame-danso-annex",
+      "name": "Kwame Danso Annex"
+    },
+    {
+      "id": "techimantia",
+      "name": "Techimantia"
+    },
+    {
+      "id": "derma",
+      "name": "Derma"
+    },
+    {
+      "id": "abuakwa",
+      "name": "Abuakwa"
+    }
+  ],
+  "users": [],
+  "drugs": [
+    {
+      "id": 1,
+      "name": "Paracetamol 500mg",
+      "brand": "Panadol",
+      "dose": "500mg",
+      "form": "Tablet",
+      "price": 4.5,
+      "costPrice": 3.15,
+      "stock": 0,
+      "cat": "Analgesics",
+      "rx": false,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 2,
+      "name": "Ibuprofen 400mg",
+      "brand": "Brufen",
+      "dose": "400mg",
+      "form": "Tablet",
+      "price": 7,
+      "costPrice": 4.9,
+      "stock": 0,
+      "cat": "Analgesics",
+      "rx": false,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 3,
+      "name": "Diclofenac Sodium 50mg",
+      "brand": "Voltaren",
+      "dose": "50mg",
+      "form": "Tablet",
+      "price": 9.5,
+      "costPrice": 6.65,
+      "stock": 0,
+      "cat": "Analgesics",
+      "rx": false,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 4,
+      "name": "Tramadol 50mg",
+      "brand": "Tramal",
+      "dose": "50mg",
+      "form": "Tablet",
+      "price": 12.74,
+      "costPrice": 9.8,
+      "stock": 0,
+      "cat": "Analgesics",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 5,
+      "name": "Amoxicillin 500mg",
+      "brand": "Amoxil",
+      "dose": "500mg",
+      "form": "Capsule",
+      "price": 16.38,
+      "costPrice": 12.6,
+      "stock": 0,
+      "cat": "Antibiotics",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 6,
+      "name": "Amoxicillin + Clavulanic acid 625mg",
+      "brand": "Augmentin",
+      "dose": "625mg",
+      "form": "Tablet",
+      "price": 29.12,
+      "costPrice": 22.4,
+      "stock": 0,
+      "cat": "Antibiotics",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 7,
+      "name": "Azithromycin 500mg",
+      "brand": "Zithromax",
+      "dose": "500mg",
+      "form": "Tablet",
+      "price": 21.84,
+      "costPrice": 16.8,
+      "stock": 0,
+      "cat": "Antibiotics",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 8,
+      "name": "Ciprofloxacin 500mg",
+      "brand": "Cipro",
+      "dose": "500mg",
+      "form": "Tablet",
+      "price": 18.2,
+      "costPrice": 14,
+      "stock": 0,
+      "cat": "Antibiotics",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 9,
+      "name": "Metronidazole 400mg",
+      "brand": "Flagyl",
+      "dose": "400mg",
+      "form": "Tablet",
+      "price": 9,
+      "costPrice": 6.3,
+      "stock": 0,
+      "cat": "Antibiotics",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 10,
+      "name": "Co-trimoxazole 160/800mg",
+      "brand": "Septrin",
+      "dose": "160/800mg",
+      "form": "Tablet",
+      "price": 9,
+      "costPrice": 6.3,
+      "stock": 0,
+      "cat": "Antibiotics",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 11,
+      "name": "Doxycycline 100mg",
+      "brand": "Vibramycin",
+      "dose": "100mg",
+      "form": "Capsule",
+      "price": 12.74,
+      "costPrice": 9.8,
+      "stock": 0,
+      "cat": "Antibiotics",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 12,
+      "name": "Ceftriaxone 1g",
+      "brand": "Rocephin",
+      "dose": "1g",
+      "form": "Injection",
+      "price": 34.58,
+      "costPrice": 26.6,
+      "stock": 0,
+      "cat": "Antibiotics",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 13,
+      "name": "Artemether + Lumefantrine",
+      "brand": "Coartem",
+      "dose": "20mg/120mg",
+      "form": "Tablet",
+      "price": 25.48,
+      "costPrice": 19.6,
+      "stock": 0,
+      "cat": "Antimalarials",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 14,
+      "name": "Artesunate + Amodiaquine",
+      "brand": "Artequine",
+      "dose": "50mg/153mg",
+      "form": "Tablet",
+      "price": 20.02,
+      "costPrice": 15.4,
+      "stock": 0,
+      "cat": "Antimalarials",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 15,
+      "name": "Sulfadoxine + Pyrimethamine",
+      "brand": "Fansidar",
+      "dose": "500mg/25mg",
+      "form": "Tablet",
+      "price": 9.1,
+      "costPrice": 7,
+      "stock": 0,
+      "cat": "Antimalarials",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 16,
+      "name": "Quinine 300mg",
+      "brand": "Quinimax",
+      "dose": "300mg",
+      "form": "Tablet",
+      "price": 14.56,
+      "costPrice": 11.2,
+      "stock": 0,
+      "cat": "Antimalarials",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 17,
+      "name": "Amlodipine 5mg",
+      "brand": "Amlodac",
+      "dose": "5mg",
+      "form": "Tablet",
+      "price": 13.65,
+      "costPrice": 10.5,
+      "stock": 0,
+      "cat": "Antihypertensives",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 18,
+      "name": "Lisinopril 10mg",
+      "brand": "Zestril",
+      "dose": "10mg",
+      "form": "Tablet",
+      "price": 16.38,
+      "costPrice": 12.6,
+      "stock": 0,
+      "cat": "Antihypertensives",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 19,
+      "name": "Losartan 50mg",
+      "brand": "Cozaar",
+      "dose": "50mg",
+      "form": "Tablet",
+      "price": 20.02,
+      "costPrice": 15.4,
+      "stock": 0,
+      "cat": "Antihypertensives",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 20,
+      "name": "Atenolol 50mg",
+      "brand": "Tenormin",
+      "dose": "50mg",
+      "form": "Tablet",
+      "price": 10.92,
+      "costPrice": 8.4,
+      "stock": 0,
+      "cat": "Antihypertensives",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 21,
+      "name": "Methyldopa 250mg",
+      "brand": "Aldomet",
+      "dose": "250mg",
+      "form": "Tablet",
+      "price": 12.74,
+      "costPrice": 9.8,
+      "stock": 0,
+      "cat": "Antihypertensives",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 22,
+      "name": "Nifedipine 30mg",
+      "brand": "Adalat",
+      "dose": "30mg",
+      "form": "Tablet",
+      "price": 14.56,
+      "costPrice": 11.2,
+      "stock": 0,
+      "cat": "Antihypertensives",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 23,
+      "name": "Metformin 500mg",
+      "brand": "Glucophage",
+      "dose": "500mg",
+      "form": "Tablet",
+      "price": 20.48,
+      "costPrice": 15.75,
+      "stock": 0,
+      "cat": "Antidiabetics",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 24,
+      "name": "Glibenclamide 5mg",
+      "brand": "Daonil",
+      "dose": "5mg",
+      "form": "Tablet",
+      "price": 10.92,
+      "costPrice": 8.4,
+      "stock": 0,
+      "cat": "Antidiabetics",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 25,
+      "name": "Glimepiride 2mg",
+      "brand": "Amaryl",
+      "dose": "2mg",
+      "form": "Tablet",
+      "price": 16.38,
+      "costPrice": 12.6,
+      "stock": 0,
+      "cat": "Antidiabetics",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 26,
+      "name": "Insulin Human 100IU/ml",
+      "brand": "Humulin",
+      "dose": "100IU/ml",
+      "form": "Injection",
+      "price": 59.15,
+      "costPrice": 45.5,
+      "stock": 0,
+      "cat": "Antidiabetics",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 27,
+      "name": "Omeprazole 20mg",
+      "brand": "Losec",
+      "dose": "20mg",
+      "form": "Capsule",
+      "price": 10.47,
+      "costPrice": 8.05,
+      "stock": 0,
+      "cat": "GI",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 28,
+      "name": "Metoclopramide 10mg",
+      "brand": "Maxolon",
+      "dose": "10mg",
+      "form": "Tablet",
+      "price": 8,
+      "costPrice": 5.6,
+      "stock": 0,
+      "cat": "GI",
+      "rx": false,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 29,
+      "name": "Domperidone 10mg",
+      "brand": "Motilium",
+      "dose": "10mg",
+      "form": "Tablet",
+      "price": 9,
+      "costPrice": 6.3,
+      "stock": 0,
+      "cat": "GI",
+      "rx": false,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 30,
+      "name": "Hyoscine Butylbromide 10mg",
+      "brand": "Buscopan",
+      "dose": "10mg",
+      "form": "Tablet",
+      "price": 9.1,
+      "costPrice": 7,
+      "stock": 0,
+      "cat": "GI",
+      "rx": false,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 31,
+      "name": "Loperamide 2mg",
+      "brand": "Imodium",
+      "dose": "2mg",
+      "form": "Capsule",
+      "price": 8.5,
+      "costPrice": 5.95,
+      "stock": 0,
+      "cat": "GI",
+      "rx": false,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 32,
+      "name": "Ondansetron 4mg",
+      "brand": "Zofran",
+      "dose": "4mg",
+      "form": "Tablet",
+      "price": 16.38,
+      "costPrice": 12.6,
+      "stock": 0,
+      "cat": "GI",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 33,
+      "name": "Vitamin C 1000mg",
+      "brand": "Redoxon",
+      "dose": "1000mg",
+      "form": "Tablet",
+      "price": 10.92,
+      "costPrice": 8.4,
+      "stock": 0,
+      "cat": "Supplements",
+      "rx": false,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 34,
+      "name": "Folic Acid 5mg",
+      "brand": "Folvite",
+      "dose": "5mg",
+      "form": "Tablet",
+      "price": 5,
+      "costPrice": 3.5,
+      "stock": 0,
+      "cat": "Supplements",
+      "rx": false,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 35,
+      "name": "Ferrous Sulfate 65mg",
+      "brand": "Ferrogradumet",
+      "dose": "65mg",
+      "form": "Tablet",
+      "price": 8,
+      "costPrice": 5.6,
+      "stock": 0,
+      "cat": "Supplements",
+      "rx": false,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 36,
+      "name": "Vitamin D3 400IU",
+      "brand": "Cholecalciferol",
+      "dose": "400IU",
+      "form": "Tablet",
+      "price": 16.38,
+      "costPrice": 12.6,
+      "stock": 0,
+      "cat": "Supplements",
+      "rx": false,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 37,
+      "name": "Multivitamin",
+      "brand": "Centrum",
+      "dose": "One a day",
+      "form": "Tablet",
+      "price": 22.75,
+      "costPrice": 17.5,
+      "stock": 0,
+      "cat": "Supplements",
+      "rx": false,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 38,
+      "name": "Calcium + Vitamin D",
+      "brand": "Caltrate Plus",
+      "dose": "500mg/400IU",
+      "form": "Tablet",
+      "price": 20.02,
+      "costPrice": 15.4,
+      "stock": 0,
+      "cat": "Supplements",
+      "rx": false,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 39,
+      "name": "Fluconazole 150mg",
+      "brand": "Diflucan",
+      "dose": "150mg",
+      "form": "Tablet",
+      "price": 16.38,
+      "costPrice": 12.6,
+      "stock": 0,
+      "cat": "Antifungals",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 40,
+      "name": "Clotrimazole 1% Cream",
+      "brand": "Canesten",
+      "dose": "1% Cream",
+      "form": "Topical",
+      "price": 12.74,
+      "costPrice": 9.8,
+      "stock": 0,
+      "cat": "Antifungals",
+      "rx": false,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 41,
+      "name": "Ketoconazole 200mg",
+      "brand": "Nizoral",
+      "dose": "200mg",
+      "form": "Tablet",
+      "price": 14.56,
+      "costPrice": 11.2,
+      "stock": 0,
+      "cat": "Antifungals",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 42,
+      "name": "Cetirizine 10mg",
+      "brand": "Zyrtec",
+      "dose": "10mg",
+      "form": "Tablet",
+      "price": 8,
+      "costPrice": 5.6,
+      "stock": 0,
+      "cat": "Antihistamines",
+      "rx": false,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 43,
+      "name": "Loratadine 10mg",
+      "brand": "Claritin",
+      "dose": "10mg",
+      "form": "Tablet",
+      "price": 9,
+      "costPrice": 6.3,
+      "stock": 0,
+      "cat": "Antihistamines",
+      "rx": false,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 44,
+      "name": "Promethazine 25mg",
+      "brand": "Phenergan",
+      "dose": "25mg",
+      "form": "Tablet",
+      "price": 8.5,
+      "costPrice": 5.95,
+      "stock": 0,
+      "cat": "Antihistamines",
+      "rx": false,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 45,
+      "name": "Salbutamol 100mcg",
+      "brand": "Ventolin",
+      "dose": "100mcg",
+      "form": "Inhaler",
+      "price": 31.85,
+      "costPrice": 24.5,
+      "stock": 0,
+      "cat": "Respiratory",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 46,
+      "name": "Budesonide + Formoterol",
+      "brand": "Symbicort",
+      "dose": "200mcg/6mcg",
+      "form": "Inhaler",
+      "price": 77.35,
+      "costPrice": 59.5,
+      "stock": 0,
+      "cat": "Respiratory",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 47,
+      "name": "Montelukast 10mg",
+      "brand": "Singulair",
+      "dose": "10mg",
+      "form": "Tablet",
+      "price": 20.02,
+      "costPrice": 15.4,
+      "stock": 0,
+      "cat": "Respiratory",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 48,
+      "name": "Bromhexine 8mg",
+      "brand": "Bisolvon",
+      "dose": "8mg",
+      "form": "Tablet",
+      "price": 8,
+      "costPrice": 5.6,
+      "stock": 0,
+      "cat": "Respiratory",
+      "rx": false,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 49,
+      "name": "Atorvastatin 10mg",
+      "brand": "Lipitor",
+      "dose": "10mg",
+      "form": "Tablet",
+      "price": 18.2,
+      "costPrice": 14,
+      "stock": 0,
+      "cat": "Cholesterol",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 50,
+      "name": "Simvastatin 20mg",
+      "brand": "Zocor",
+      "dose": "20mg",
+      "form": "Tablet",
+      "price": 16.38,
+      "costPrice": 12.6,
+      "stock": 0,
+      "cat": "Cholesterol",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 51,
+      "name": "Furosemide 40mg",
+      "brand": "Lasix",
+      "dose": "40mg",
+      "form": "Tablet",
+      "price": 8,
+      "costPrice": 5.6,
+      "stock": 0,
+      "cat": "Diuretics",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 52,
+      "name": "Spironolactone 25mg",
+      "brand": "Aldactone",
+      "dose": "25mg",
+      "form": "Tablet",
+      "price": 10.92,
+      "costPrice": 8.4,
+      "stock": 0,
+      "cat": "Diuretics",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 53,
+      "name": "Albendazole 400mg",
+      "brand": "Zentel",
+      "dose": "400mg",
+      "form": "Tablet",
+      "price": 10.92,
+      "costPrice": 8.4,
+      "stock": 0,
+      "cat": "Anthelmintics",
+      "rx": false,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 54,
+      "name": "Mebendazole 100mg",
+      "brand": "Vermox",
+      "dose": "100mg",
+      "form": "Tablet",
+      "price": 9.1,
+      "costPrice": 7,
+      "stock": 0,
+      "cat": "Anthelmintics",
+      "rx": false,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 55,
+      "name": "Efavirenz + Lamivudine + Tenofovir",
+      "brand": "Atripla",
+      "dose": "600/300/300mg",
+      "form": "Tablet",
+      "price": 40.95,
+      "costPrice": 31.5,
+      "stock": 0,
+      "cat": "ARVs",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 56,
+      "name": "Dolutegravir 50mg",
+      "brand": "Tivicay",
+      "dose": "50mg",
+      "form": "Tablet",
+      "price": 54.6,
+      "costPrice": 42,
+      "stock": 0,
+      "cat": "ARVs",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 57,
+      "name": "Prednisolone 5mg",
+      "brand": "Dakacort",
+      "dose": "5mg",
+      "form": "Tablet",
+      "price": 8,
+      "costPrice": 5.6,
+      "stock": 0,
+      "cat": "Corticosteroids",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 58,
+      "name": "Dexamethasone 4mg",
+      "brand": "Decadron",
+      "dose": "4mg",
+      "form": "Tablet",
+      "price": 9.1,
+      "costPrice": 7,
+      "stock": 0,
+      "cat": "Corticosteroids",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 59,
+      "name": "Carbamazepine 200mg",
+      "brand": "Tegretol",
+      "dose": "200mg",
+      "form": "Tablet",
+      "price": 16.38,
+      "costPrice": 12.6,
+      "stock": 0,
+      "cat": "Neurology",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 60,
+      "name": "Diazepam 5mg",
+      "brand": "Valium",
+      "dose": "5mg",
+      "form": "Tablet",
+      "price": 10.92,
+      "costPrice": 8.4,
+      "stock": 0,
+      "cat": "Neurology",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 61,
+      "name": "ORS Sachets",
+      "brand": "ORS",
+      "dose": "4.5g",
+      "form": "Sachets",
+      "price": 6,
+      "costPrice": 4.2,
+      "stock": 0,
+      "cat": "OTC",
+      "rx": false,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 62,
+      "name": "Povidone Iodine 10%",
+      "brand": "Betadine",
+      "dose": "10%",
+      "form": "Solution",
+      "price": 10.92,
+      "costPrice": 8.4,
+      "stock": 0,
+      "cat": "OTC",
+      "rx": false,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 63,
+      "name": "Zinc Oxide 15% Cream",
+      "brand": "Desitin",
+      "dose": "15%",
+      "form": "Cream",
+      "price": 9.1,
+      "costPrice": 7,
+      "stock": 0,
+      "cat": "OTC",
+      "rx": false,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 64,
+      "name": "Aspirin 75mg",
+      "brand": "Acard",
+      "dose": "75mg",
+      "form": "Tablet",
+      "price": 6,
+      "costPrice": 4.2,
+      "stock": 0,
+      "cat": "Anticoagulants",
+      "rx": false,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 65,
+      "name": "Clopidogrel 75mg",
+      "brand": "Plavix",
+      "dose": "75mg",
+      "form": "Tablet",
+      "price": 25.48,
+      "costPrice": 19.6,
+      "stock": 0,
+      "cat": "Anticoagulants",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 66,
+      "name": "Misoprostol 200mcg",
+      "brand": "Cytotec",
+      "dose": "200mcg",
+      "form": "Tablet",
+      "price": 22.75,
+      "costPrice": 17.5,
+      "stock": 0,
+      "cat": "Gynecology",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 67,
+      "name": "Tranexamic Acid 500mg",
+      "brand": "Cyklokapron",
+      "dose": "500mg",
+      "form": "Tablet",
+      "price": 16.38,
+      "costPrice": 12.6,
+      "stock": 0,
+      "cat": "Gynecology",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 68,
+      "name": "Levothyroxine 50mcg",
+      "brand": "Euthyrox",
+      "dose": "50mcg",
+      "form": "Tablet",
+      "price": 14.56,
+      "costPrice": 11.2,
+      "stock": 0,
+      "cat": "Endocrinology",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 69,
+      "name": "Acyclovir 400mg",
+      "brand": "Zovirax",
+      "dose": "400mg",
+      "form": "Tablet",
+      "price": 18.2,
+      "costPrice": 14,
+      "stock": 0,
+      "cat": "Antivirals",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 70,
+      "name": "Oseltamivir 75mg",
+      "brand": "Tamiflu",
+      "dose": "75mg",
+      "form": "Capsule",
+      "price": 40.95,
+      "costPrice": 31.5,
+      "stock": 0,
+      "cat": "Antivirals",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 71,
+      "name": "Hydrocortisone 1% Cream",
+      "brand": "Hyderm",
+      "dose": "1% Cream",
+      "form": "Topical",
+      "price": 9.1,
+      "costPrice": 7,
+      "stock": 0,
+      "cat": "Dermatology",
+      "rx": false,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 72,
+      "name": "Betamethasone 0.05% Cream",
+      "brand": "Diprolene",
+      "dose": "0.05%",
+      "form": "Topical",
+      "price": 12.74,
+      "costPrice": 9.8,
+      "stock": 0,
+      "cat": "Dermatology",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 73,
+      "name": "Tamsulosin 0.4mg",
+      "brand": "Flomax",
+      "dose": "0.4mg",
+      "form": "Tablet",
+      "price": 20.02,
+      "costPrice": 15.4,
+      "stock": 0,
+      "cat": "Urology",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 74,
+      "name": "Sertraline 50mg",
+      "brand": "Zoloft",
+      "dose": "50mg",
+      "form": "Tablet",
+      "price": 18.2,
+      "costPrice": 14,
+      "stock": 0,
+      "cat": "Psychiatry",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 75,
+      "name": "Olanzapine 5mg",
+      "brand": "Zyprexa",
+      "dose": "5mg",
+      "form": "Tablet",
+      "price": 25.48,
+      "costPrice": 19.6,
+      "stock": 0,
+      "cat": "Psychiatry",
+      "rx": true,
+      "quantity": 0,
+      "batches": []
+    },
+    {
+      "id": 76,
+      "name": "Hepatitis B Vaccine",
+      "brand": "Engerix-B",
+      "dose": "0.5ml",
+      "form": "Injection",
+      "price": 31.85,
+      "costPrice": 24.5,
+      "stock": 0,
+      "cat": "Vaccines",
+      "rx": false,
+      "quantity": 0,
+      "batches": []
+    }
+  ],
+  "customers": [
+    {
+      "id": 1,
+      "name": "Walk-in",
+      "phone": "",
+      "notes": "",
+      "balance": 0,
+      "allergies": "",
+      "conditions": "",
+      "currentMedications": "",
+      "medicalNotes": "",
+      "medicalRecords": []
+    }
+  ],
+  "referenceDrugs": [
+    [
+      "Aspirin",
+      "Disprin",
+      "300mg",
+      "Tablet",
+      "Analgesics"
+    ],
+    [
+      "Aspirin + Caffeine",
+      "Caffetin",
+      "500mg/32mg",
+      "Tablet",
+      "Analgesics"
+    ],
+    [
+      "Aspirin + Paracetamol",
+      "Disprin Plus",
+      "500mg/300mg",
+      "Tablet",
+      "Analgesics"
+    ],
+    [
+      "Caffeine + Paracetamol + Phenylephrine",
+      "Solpadeine",
+      "",
+      "Tablet",
+      "Analgesics"
+    ],
+    [
+      "Diclofenac Sodium",
+      "Voltaren",
+      "50mg",
+      "Tablet",
+      "Analgesics"
+    ],
+    [
+      "Ibuprofen",
+      "Brufen",
+      "400mg",
+      "Tablet",
+      "Analgesics"
+    ],
+    [
+      "Ibuprofen",
+      "Nurofen",
+      "100mg/5ml",
+      "Syrup",
+      "Analgesics"
+    ],
+    [
+      "Ketorolac",
+      "Toradol",
+      "10mg",
+      "Tablet",
+      "Analgesics"
+    ],
+    [
+      "Morphine",
+      "MS Contin",
+      "10mg",
+      "Tablet",
+      "Analgesics"
+    ],
+    [
+      "Naproxen",
+      "Naprosyn",
+      "250mg",
+      "Tablet",
+      "Analgesics"
+    ],
+    [
+      "Naproxen",
+      "Apronax",
+      "500mg",
+      "Tablet",
+      "Analgesics"
+    ],
+    [
+      "Paracetamol",
+      "Panadol",
+      "500mg",
+      "Tablet",
+      "Analgesics"
+    ],
+    [
+      "Paracetamol",
+      "Calpol",
+      "120mg/5ml",
+      "Syrup",
+      "Analgesics"
+    ],
+    [
+      "Paracetamol + Caffeine",
+      "Panadol Extra",
+      "500mg/65mg",
+      "Tablet",
+      "Analgesics"
+    ],
+    [
+      "Paracetamol + Codeine",
+      "Panadeine",
+      "500mg/8mg",
+      "Tablet",
+      "Analgesics"
+    ],
+    [
+      "Paracetamol + Codeine + Caffeine",
+      "Panadeine Forte",
+      "500mg/30mg/30mg",
+      "Tablet",
+      "Analgesics"
+    ],
+    [
+      "Paracetamol + Ibuprofen",
+      "Maxigesic",
+      "500mg/200mg",
+      "Tablet",
+      "Analgesics"
+    ],
+    [
+      "Tramadol",
+      "Tramal",
+      "50mg",
+      "Tablet",
+      "Analgesics"
+    ],
+    [
+      "Albendazole",
+      "Zentel",
+      "400mg",
+      "Tablet",
+      "Anthelmintics"
+    ],
+    [
+      "Albendazole + Ivermectin",
+      "Mectizan",
+      "400mg/6mg",
+      "Tablet",
+      "Anthelmintics"
+    ],
+    [
+      "Ivermectin",
+      "Stromectol",
+      "6mg",
+      "Tablet",
+      "Anthelmintics"
+    ],
+    [
+      "Mebendazole",
+      "Vermox",
+      "100mg",
+      "Tablet",
+      "Anthelmintics"
+    ],
+    [
+      "Praziquantel",
+      "Biltricide",
+      "600mg",
+      "Tablet",
+      "Anthelmintics"
+    ],
+    [
+      "Pyrantel Pamoate",
+      "Combantrin",
+      "250mg",
+      "Tablet",
+      "Anthelmintics"
+    ],
+    [
+      "Amoxicillin",
+      "Amoxil",
+      "500mg",
+      "Capsule",
+      "Antibiotics"
+    ],
+    [
+      "Amoxicillin",
+      "Amoxil",
+      "250mg",
+      "Capsule",
+      "Antibiotics"
+    ],
+    [
+      "Amoxicillin + Clavulanic acid",
+      "Augmentin",
+      "625mg",
+      "Tablet",
+      "Antibiotics"
+    ],
+    [
+      "Amoxicillin + Clavulanic acid",
+      "Augmentin",
+      "500mg/125mg",
+      "Tablet",
+      "Antibiotics"
+    ],
+    [
+      "Augmentin",
+      "Augmentin",
+      "625mg",
+      "Tablet",
+      "Antibiotics"
+    ],
+    [
+      "Azithromycin",
+      "Zithromax",
+      "500mg",
+      "Tablet",
+      "Antibiotics"
+    ],
+    [
+      "Azithromycin",
+      "Zithromax",
+      "250mg",
+      "Tablet",
+      "Antibiotics"
+    ],
+    [
+      "Aztreonam",
+      "Azactam",
+      "1g",
+      "Injection",
+      "Antibiotics"
+    ],
+    [
+      "Benzathine penicillin",
+      "Bicillin L-A",
+      "1.2MU",
+      "Injection",
+      "Antibiotics"
+    ],
+    [
+      "Cefixime",
+      "Suprax",
+      "400mg",
+      "Tablet",
+      "Antibiotics"
+    ],
+    [
+      "Cefpodoxime",
+      "Vantin",
+      "200mg",
+      "Tablet",
+      "Antibiotics"
+    ],
+    [
+      "Ceftazidime",
+      "Fortaz",
+      "1g",
+      "Injection",
+      "Antibiotics"
+    ],
+    [
+      "Ceftriaxone",
+      "Rocephin",
+      "1g",
+      "Injection",
+      "Antibiotics"
+    ],
+    [
+      "Ceftriaxone",
+      "Rocephin",
+      "250mg",
+      "Injection",
+      "Antibiotics"
+    ],
+    [
+      "Ceftriaxone",
+      "Rocephin",
+      "500mg",
+      "Injection",
+      "Antibiotics"
+    ],
+    [
+      "Cefuroxime",
+      "Zinnat",
+      "250mg",
+      "Tablet",
+      "Antibiotics"
+    ],
+    [
+      "Cephalexin",
+      "Keflex",
+      "500mg",
+      "Capsule",
+      "Antibiotics"
+    ],
+    [
+      "Chloramphenicol",
+      "Chlormycetin",
+      "250mg",
+      "Capsule",
+      "Antibiotics"
+    ],
+    [
+      "Ciprofloxacin",
+      "Cipro",
+      "500mg",
+      "Tablet",
+      "Antibiotics"
+    ],
+    [
+      "Clarithromycin",
+      "Biaxin",
+      "250mg",
+      "Tablet",
+      "Antibiotics"
+    ],
+    [
+      "Clindamycin",
+      "Dalacin",
+      "300mg",
+      "Capsule",
+      "Antibiotics"
+    ],
+    [
+      "Co-trimoxazole",
+      "Septrin",
+      "160mg/800mg",
+      "Tablet",
+      "Antibiotics"
+    ],
+    [
+      "Doxycycline",
+      "Vibramycin",
+      "100mg",
+      "Capsule",
+      "Antibiotics"
+    ],
+    [
+      "Doxycycline + Tinidazole",
+      "Xydol",
+      "100mg/300mg",
+      "Tablet",
+      "Antibiotics"
+    ],
+    [
+      "Ertapenem",
+      "Invanz",
+      "1g",
+      "Injection",
+      "Antibiotics"
+    ],
+    [
+      "Erythromycin",
+      "Erythrocin",
+      "500mg",
+      "Tablet",
+      "Antibiotics"
+    ],
+    [
+      "Flucloxacillin",
+      "Floxapen",
+      "500mg",
+      "Capsule",
+      "Antibiotics"
+    ],
+    [
+      "Gentamicin",
+      "Gentamicin",
+      "80mg",
+      "Injection",
+      "Antibiotics"
+    ],
+    [
+      "Imipenem + Cilastatin",
+      "Primaxin",
+      "500mg/500mg",
+      "Injection",
+      "Antibiotics"
+    ],
+    [
+      "Levofloxacin",
+      "Tavanic",
+      "500mg",
+      "Tablet",
+      "Antibiotics"
+    ],
+    [
+      "Methicillin",
+      "Staphcillin",
+      "500mg",
+      "Capsule",
+      "Antibiotics"
+    ],
+    [
+      "Metronidazole",
+      "Flagyl",
+      "400mg",
+      "Tablet",
+      "Antibiotics"
+    ],
+    [
+      "Metronidazole + Nystatin",
+      "Flagyl Plus",
+      "400mg/100,000IU",
+      "Tablet",
+      "Antibiotics"
+    ],
+    [
+      "Moxifloxacin",
+      "Avelox",
+      "400mg",
+      "Tablet",
+      "Antibiotics"
+    ],
+    [
+      "Nitazoxanide",
+      "Alinia",
+      "500mg",
+      "Tablet",
+      "Antibiotics"
+    ],
+    [
+      "Nitrofurantoin",
+      "Macrodantin",
+      "100mg",
+      "Capsule",
+      "Antibiotics"
+    ],
+    [
+      "Norfloxacin",
+      "Norflox",
+      "400mg",
+      "Tablet",
+      "Antibiotics"
+    ],
+    [
+      "Ornidazole",
+      "Tiberal",
+      "500mg",
+      "Tablet",
+      "Antibiotics"
+    ],
+    [
+      "Phenoxymethylpenicillin",
+      "Pen-Vee K",
+      "250mg",
+      "Tablet",
+      "Antibiotics"
+    ],
+    [
+      "Secnidazole",
+      "Solosec",
+      "2g",
+      "Tablet",
+      "Antibiotics"
+    ],
+    [
+      "Tetracycline",
+      "Tetracycline",
+      "250mg",
+      "Tablet",
+      "Antibiotics"
+    ],
+    [
+      "Tinidazole",
+      "Fasigyn",
+      "500mg",
+      "Tablet",
+      "Antibiotics"
+    ],
+    [
+      "Aspirin",
+      "Acard",
+      "75mg",
+      "Tablet",
+      "Anticoagulants"
+    ],
+    [
+      "Aspirin + Clopidogrel",
+      "Plavix",
+      "75mg/75mg",
+      "Tablet",
+      "Anticoagulants"
+    ],
+    [
+      "Clopidogrel",
+      "Plavix",
+      "75mg",
+      "Tablet",
+      "Anticoagulants"
+    ],
+    [
+      "Enoxaparin",
+      "Clexane",
+      "40mg",
+      "Injection",
+      "Anticoagulants"
+    ],
+    [
+      "Heparin",
+      "Heparin",
+      "5,000IU",
+      "Injection",
+      "Anticoagulants"
+    ],
+    [
+      "Warfarin",
+      "Coumadin",
+      "5mg",
+      "Tablet",
+      "Anticoagulants"
+    ],
+    [
+      "Glibenclamide",
+      "Daonil",
+      "5mg",
+      "Tablet",
+      "Antidiabetics"
+    ],
+    [
+      "Glibenclamide + Metformin",
+      "Glucovance",
+      "5mg/500mg",
+      "Tablet",
+      "Antidiabetics"
+    ],
+    [
+      "Gliclazide",
+      "Diamicron",
+      "80mg",
+      "Tablet",
+      "Antidiabetics"
+    ],
+    [
+      "Gliclazide MR",
+      "Diamicron MR",
+      "30mg",
+      "Tablet",
+      "Antidiabetics"
+    ],
+    [
+      "Glimepiride",
+      "Amaryl",
+      "2mg",
+      "Tablet",
+      "Antidiabetics"
+    ],
+    [
+      "Insulin Aspart",
+      "NovoRapid",
+      "100IU/ml",
+      "Injection",
+      "Antidiabetics"
+    ],
+    [
+      "Insulin Glargine",
+      "Lantus",
+      "100IU/ml",
+      "Injection",
+      "Antidiabetics"
+    ],
+    [
+      "Insulin Human",
+      "Humulin",
+      "100IU/ml",
+      "Injection",
+      "Antidiabetics"
+    ],
+    [
+      "Insulin Mixtard",
+      "Mixtard",
+      "30/70",
+      "Injection",
+      "Antidiabetics"
+    ],
+    [
+      "Lantus Solostar",
+      "Lantus",
+      "100IU/ml",
+      "Injection",
+      "Antidiabetics"
+    ],
+    [
+      "Metformin",
+      "Glucophage",
+      "500mg",
+      "Tablet",
+      "Antidiabetics"
+    ],
+    [
+      "Metformin + Sitagliptin",
+      "Janumet",
+      "500mg/50mg",
+      "Tablet",
+      "Antidiabetics"
+    ],
+    [
+      "Repaglinide",
+      "Novonorm",
+      "0.5mg",
+      "Tablet",
+      "Antidiabetics"
+    ],
+    [
+      "Sitagliptin",
+      "Januvia",
+      "100mg",
+      "Tablet",
+      "Antidiabetics"
+    ],
+    [
+      "Tolbutamide",
+      "Orinase",
+      "500mg",
+      "Tablet",
+      "Antidiabetics"
+    ],
+    [
+      "Clotrimazole",
+      "Canesten",
+      "1% Cream",
+      "Topical",
+      "Antifungals"
+    ],
+    [
+      "Clotrimazole",
+      "Canesten",
+      "10mg",
+      "Tablet",
+      "Antifungals"
+    ],
+    [
+      "Fluconazole",
+      "Diflucan",
+      "150mg",
+      "Tablet",
+      "Antifungals"
+    ],
+    [
+      "Hydrocortisone + Miconazole",
+      "Daktacort",
+      "1%/2%",
+      "Cream",
+      "Antifungals"
+    ],
+    [
+      "Ketoconazole",
+      "Nizoral",
+      "200mg",
+      "Tablet",
+      "Antifungals"
+    ],
+    [
+      "Miconazole",
+      "Daktarin",
+      "2% Cream",
+      "Topical",
+      "Antifungals"
+    ],
+    [
+      "Miconazole + Zinc Oxide",
+      "Daktarin Plus",
+      "Cream",
+      "Topical",
+      "Antifungals"
+    ],
+    [
+      "Nystatin",
+      "Mycostatin",
+      "100,000IU",
+      "Oral Suspension",
+      "Antifungals"
+    ],
+    [
+      "Terbinafine",
+      "Lamisil",
+      "250mg",
+      "Tablet",
+      "Antifungals"
+    ],
+    [
+      "Tolnaftate",
+      "Tinactin",
+      "1%",
+      "Cream",
+      "Antifungals"
+    ],
+    [
+      "Voriconazole",
+      "Vfend",
+      "200mg",
+      "Tablet",
+      "Antifungals"
+    ],
+    [
+      "Cetirizine",
+      "Zyrtec",
+      "10mg",
+      "Tablet",
+      "Antihistamines"
+    ],
+    [
+      "Cetirizine + Montelukast",
+      "Zyrtec-D",
+      "10mg/5mg",
+      "Tablet",
+      "Antihistamines"
+    ],
+    [
+      "Cetirizine + Pseudoephedrine",
+      "Zyrtec-D",
+      "10mg/120mg",
+      "Tablet",
+      "Antihistamines"
+    ],
+    [
+      "Levocetirizine",
+      "Xyzal",
+      "5mg",
+      "Tablet",
+      "Antihistamines"
+    ],
+    [
+      "Loratadine",
+      "Claritin",
+      "10mg",
+      "Tablet",
+      "Antihistamines"
+    ],
+    [
+      "Loratadine + Pseudoephedrine",
+      "Claritin-D",
+      "10mg/240mg",
+      "Tablet",
+      "Antihistamines"
+    ],
+    [
+      "Promethazine",
+      "Phenergan",
+      "25mg",
+      "Tablet",
+      "Antihistamines"
+    ],
+    [
+      "Amlodipine",
+      "Amlodac",
+      "5mg",
+      "Tablet",
+      "Antihypertensives"
+    ],
+    [
+      "Amlodipine + Benazepril",
+      "Lotrel",
+      "5mg/20mg",
+      "Tablet",
+      "Antihypertensives"
+    ],
+    [
+      "Amlodipine + Valsartan",
+      "Exforge",
+      "5mg/160mg",
+      "Tablet",
+      "Antihypertensives"
+    ],
+    [
+      "Amlodipine + Valsartan + Hydrochlorothiazide",
+      "Exforge HCT",
+      "5mg/160mg/12.5mg",
+      "Tablet",
+      "Antihypertensives"
+    ],
+    [
+      "Atenolol",
+      "Tenormin",
+      "50mg",
+      "Tablet",
+      "Antihypertensives"
+    ],
+    [
+      "Atenolol",
+      "Tenormin",
+      "100mg",
+      "Tablet",
+      "Antihypertensives"
+    ],
+    [
+      "Atenolol + Bendrofluazide",
+      "Co-tenidone",
+      "50mg/2.5mg",
+      "Tablet",
+      "Antihypertensives"
+    ],
+    [
+      "Atenolol + Chlorthalidone",
+      "Tenoretic",
+      "50mg/25mg",
+      "Tablet",
+      "Antihypertensives"
+    ],
+    [
+      "Benazepril",
+      "Lotensin",
+      "10mg",
+      "Tablet",
+      "Antihypertensives"
+    ],
+    [
+      "Candesartan",
+      "Atacand",
+      "8mg",
+      "Tablet",
+      "Antihypertensives"
+    ],
+    [
+      "Captopril",
+      "Capoten",
+      "50mg",
+      "Tablet",
+      "Antihypertensives"
+    ],
+    [
+      "Captopril",
+      "Capoten",
+      "25mg",
+      "Tablet",
+      "Antihypertensives"
+    ],
+    [
+      "Clonidine",
+      "Catapres",
+      "0.1mg",
+      "Tablet",
+      "Antihypertensives"
+    ],
+    [
+      "Diltiazem",
+      "Cardizem",
+      "60mg",
+      "Tablet",
+      "Antihypertensives"
+    ],
+    [
+      "Enalapril",
+      "Renitec",
+      "10mg",
+      "Tablet",
+      "Antihypertensives"
+    ],
+    [
+      "Enalapril + Amlodipine",
+      "Pitchtide",
+      "10mg/5mg",
+      "Tablet",
+      "Antihypertensives"
+    ],
+    [
+      "Enalapril + Hydrochlorothiazide",
+      "Vaseretic",
+      "10mg/25mg",
+      "Tablet",
+      "Antihypertensives"
+    ],
+    [
+      "Hydralazine",
+      "Apresoline",
+      "25mg",
+      "Tablet",
+      "Antihypertensives"
+    ],
+    [
+      "Hydrochlorothiazide",
+      "Bendrofluazide",
+      "25mg",
+      "Tablet",
+      "Antihypertensives"
+    ],
+    [
+      "Hydrochlorothiazide + Irbesartan",
+      "Avalide",
+      "300mg/150mg",
+      "Tablet",
+      "Antihypertensives"
+    ],
+    [
+      "Lisinopril",
+      "Zestril",
+      "10mg",
+      "Tablet",
+      "Antihypertensives"
+    ],
+    [
+      "Lisinopril + Amlodipine",
+      "Amturnide",
+      "20mg/5mg",
+      "Tablet",
+      "Antihypertensives"
+    ],
+    [
+      "Lisinopril + Hydrochlorothiazide",
+      "Prinzide",
+      "20mg/12.5mg",
+      "Tablet",
+      "Antihypertensives"
+    ],
+    [
+      "Lisinopril + Hydrochlorothiazide + Amlodipine",
+      "Triprilide",
+      "20mg/12.5mg/5mg",
+      "Tablet",
+      "Antihypertensives"
+    ],
+    [
+      "Losartan",
+      "Cozaar",
+      "50mg",
+      "Tablet",
+      "Antihypertensives"
+    ],
+    [
+      "Methyldopa",
+      "Aldomet",
+      "250mg",
+      "Tablet",
+      "Antihypertensives"
+    ],
+    [
+      "Methyldopa + Hydrochlorothiazide",
+      "Aldoclor",
+      "250mg/25mg",
+      "Tablet",
+      "Antihypertensives"
+    ],
+    [
+      "Metoprolol",
+      "Seloken",
+      "50mg",
+      "Tablet",
+      "Antihypertensives"
+    ],
+    [
+      "Nifedipine",
+      "Adalat",
+      "30mg",
+      "Tablet",
+      "Antihypertensives"
+    ],
+    [
+      "Nifedipine",
+      "Adalat",
+      "10mg",
+      "Tablet",
+      "Antihypertensives"
+    ],
+    [
+      "Nifedipine + Atenolol",
+      "Adalate XR",
+      "30mg/50mg",
+      "Tablet",
+      "Antihypertensives"
+    ],
+    [
+      "Propranolol",
+      "Inderal",
+      "40mg",
+      "Tablet",
+      "Antihypertensives"
+    ],
+    [
+      "Propranolol + Hydrochlorothiazide",
+      "Inderal LA",
+      "40mg/25mg",
+      "Tablet",
+      "Antihypertensives"
+    ],
+    [
+      "Spironolactone",
+      "Aldactone",
+      "25mg",
+      "Tablet",
+      "Antihypertensives"
+    ],
+    [
+      "Telmisartan",
+      "Micardis",
+      "40mg",
+      "Tablet",
+      "Antihypertensives"
+    ],
+    [
+      "Telmisartan",
+      "Micardis",
+      "20mg",
+      "Tablet",
+      "Antihypertensives"
+    ],
+    [
+      "Valsartan",
+      "Diovan",
+      "80mg",
+      "Tablet",
+      "Antihypertensives"
+    ],
+    [
+      "Artemether + Lumefantrine",
+      "Coartem, Lonart, Lumether",
+      "20mg/120mg",
+      "Tablet",
+      "Antimalarials"
+    ],
+    [
+      "Artemether + Lumefantrine",
+      "Coartem, Lonart",
+      "80mg/480mg",
+      "Tablet",
+      "Antimalarials"
+    ],
+    [
+      "Artemisinin",
+      "Artemisinin",
+      "50mg",
+      "Tablet",
+      "Antimalarials"
+    ],
+    [
+      "Artesunate",
+      "Artesune, Artesun",
+      "50mg",
+      "Tablet",
+      "Antimalarials"
+    ],
+    [
+      "Artesunate + Amodiaquine",
+      "Artemoxo, Artequine",
+      "50mg/153mg",
+      "Tablet",
+      "Antimalarials"
+    ],
+    [
+      "Artesunate + Sulfadoxine + Pyrimethamine",
+      "Artefum",
+      "50mg/500mg/25mg",
+      "Tablet",
+      "Antimalarials"
+    ],
+    [
+      "Chloroquine",
+      "Avloclor",
+      "250mg",
+      "Tablet",
+      "Antimalarials"
+    ],
+    [
+      "Chloroquine + Sulfadoxine + Pyrimethamine",
+      "Maloprim",
+      "250mg/500mg/25mg",
+      "Tablet",
+      "Antimalarials"
+    ],
+    [
+      "Dihydroartemisinin + Piperaquine",
+      "Duo-Cotecxin, Artekin",
+      "40mg/320mg",
+      "Tablet",
+      "Antimalarials"
+    ],
+    [
+      "Hydroxychloroquine",
+      "Plaquenil",
+      "200mg",
+      "Tablet",
+      "Antimalarials"
+    ],
+    [
+      "Mefloquine",
+      "Lariam",
+      "250mg",
+      "Tablet",
+      "Antimalarials"
+    ],
+    [
+      "Primaquine",
+      "Primaquine",
+      "15mg",
+      "Tablet",
+      "Antimalarials"
+    ],
+    [
+      "Proguanil + Atovaquone",
+      "Malarone",
+      "100mg/250mg",
+      "Tablet",
+      "Antimalarials"
+    ],
+    [
+      "Quinine",
+      "Quinimax",
+      "300mg",
+      "Tablet",
+      "Antimalarials"
+    ],
+    [
+      "Quinine",
+      "Quinimax",
+      "300mg",
+      "Injection",
+      "Antimalarials"
+    ],
+    [
+      "Sulfadoxine + Pyrimethamine",
+      "Fansidar",
+      "500mg/25mg",
+      "Tablet",
+      "Antimalarials"
+    ],
+    [
+      "Acyclovir",
+      "Zovirax",
+      "400mg",
+      "Tablet",
+      "Antivirals"
+    ],
+    [
+      "Ganciclovir",
+      "Cytovene",
+      "500mg",
+      "Tablet",
+      "Antivirals"
+    ],
+    [
+      "Oseltamivir",
+      "Tamiflu",
+      "75mg",
+      "Capsule",
+      "Antivirals"
+    ],
+    [
+      "Valacyclovir",
+      "Valtrex",
+      "500mg",
+      "Tablet",
+      "Antivirals"
+    ],
+    [
+      "Zanamivir",
+      "Relenza",
+      "5mg",
+      "Inhaler",
+      "Antivirals"
+    ],
+    [
+      "Abacavir",
+      "Ziagen",
+      "300mg",
+      "Tablet",
+      "ARVs"
+    ],
+    [
+      "Atazanavir",
+      "Reyataz",
+      "300mg",
+      "Tablet",
+      "ARVs"
+    ],
+    [
+      "Atazanavir + Ritonavir",
+      "Reyataz",
+      "300mg/100mg",
+      "Tablet",
+      "ARVs"
+    ],
+    [
+      "Bictegravir + emtricitabine + tenofovir alafenamide",
+      "Biktarvy",
+      "50mg/200mg/25mg",
+      "Tablet",
+      "ARVs"
+    ],
+    [
+      "Cobicistat + Elvitegravir + Emtricitabine + Tenofovir",
+      "Stribild",
+      "150mg/150mg/200mg/300mg",
+      "Tablet",
+      "ARVs"
+    ],
+    [
+      "Darunavir",
+      "Prezista",
+      "600mg",
+      "Tablet",
+      "ARVs"
+    ],
+    [
+      "Dolutegravir",
+      "Tivicay",
+      "50mg",
+      "Tablet",
+      "ARVs"
+    ],
+    [
+      "Dolutegravir + Lamivudine",
+      "Dovato",
+      "50mg/300mg",
+      "Tablet",
+      "ARVs"
+    ],
+    [
+      "Dolutegravir + Tenofovir + Lamivudine",
+      "Tivicay",
+      "50mg/300mg/300mg",
+      "Tablet",
+      "ARVs"
+    ],
+    [
+      "Efavirenz",
+      "Sustiva",
+      "600mg",
+      "Tablet",
+      "ARVs"
+    ],
+    [
+      "Efavirenz + Lamivudine + Tenofovir",
+      "Atripla",
+      "600mg/300mg/300mg",
+      "Tablet",
+      "ARVs"
+    ],
+    [
+      "Efavirenz + Tenofovir + Lamivudine",
+      "Atripla",
+      "600mg/300mg/300mg",
+      "Tablet",
+      "ARVs"
+    ],
+    [
+      "Emtricitabine",
+      "Emtriva",
+      "200mg",
+      "Tablet",
+      "ARVs"
+    ],
+    [
+      "Emtricitabine + Tenofovir",
+      "Truvada",
+      "200mg/300mg",
+      "Tablet",
+      "ARVs"
+    ],
+    [
+      "Emtricitabine + Tenofovir alafenamide",
+      "Descovy",
+      "200mg/25mg",
+      "Tablet",
+      "ARVs"
+    ],
+    [
+      "Lamivudine",
+      "Epivir",
+      "150mg",
+      "Tablet",
+      "ARVs"
+    ],
+    [
+      "Lamivudine + Zidovudine",
+      "Combivir",
+      "150mg/300mg",
+      "Tablet",
+      "ARVs"
+    ],
+    [
+      "Lamivudine + Zidovudine + Nevirapine",
+      "Triomune",
+      "150mg/300mg/200mg",
+      "Tablet",
+      "ARVs"
+    ],
+    [
+      "Lopinavir + Ritonavir",
+      "Kaletra",
+      "200mg/50mg",
+      "Tablet",
+      "ARVs"
+    ],
+    [
+      "Nevirapine",
+      "Viramune",
+      "200mg",
+      "Tablet",
+      "ARVs"
+    ],
+    [
+      "Nevirapine + Zidovudine",
+      "Zerit",
+      "200mg/300mg",
+      "Tablet",
+      "ARVs"
+    ],
+    [
+      "Raltegravir",
+      "Isentress",
+      "400mg",
+      "Tablet",
+      "ARVs"
+    ],
+    [
+      "Ritonavir",
+      "Norvir",
+      "100mg",
+      "Tablet",
+      "ARVs"
+    ],
+    [
+      "Tenofovir",
+      "Viread",
+      "300mg",
+      "Tablet",
+      "ARVs"
+    ],
+    [
+      "Tenofovir + Emtricitabine + Efavirenz",
+      "Atripla",
+      "300mg/200mg/600mg",
+      "Tablet",
+      "ARVs"
+    ],
+    [
+      "Tenofovir + Lamivudine",
+      "Truvada",
+      "300mg/300mg",
+      "Tablet",
+      "ARVs"
+    ],
+    [
+      "Tenofovir alafenamide",
+      "Vemlidy",
+      "25mg",
+      "Tablet",
+      "ARVs"
+    ],
+    [
+      "Zidovudine",
+      "Retrovir",
+      "300mg",
+      "Tablet",
+      "ARVs"
+    ],
+    [
+      "Zidovudine + Lamivudine",
+      "Combivir",
+      "300mg/150mg",
+      "Tablet",
+      "ARVs"
+    ],
+    [
+      "Adenosine",
+      "Adenocard",
+      "6mg",
+      "Injection",
+      "Cardiology"
+    ],
+    [
+      "Isosorbide Mononitrate",
+      "Imdur",
+      "20mg",
+      "Tablet",
+      "Cardiology"
+    ],
+    [
+      "Nitroglycerin",
+      "Nitrostat",
+      "0.4mg",
+      "Sublingual Tablet",
+      "Cardiology"
+    ],
+    [
+      "Atorvastatin",
+      "Lipitor",
+      "10mg",
+      "Tablet",
+      "Cholesterol"
+    ],
+    [
+      "Atorvastatin + Amlodipine",
+      "Caduet",
+      "10mg/5mg",
+      "Tablet",
+      "Cholesterol"
+    ],
+    [
+      "Atorvastatin + Amlodipine + Perindopril",
+      "Coversyl Plus",
+      "10mg/5mg/4mg",
+      "Tablet",
+      "Cholesterol"
+    ],
+    [
+      "Clofibrate",
+      "Atromid-S",
+      "500mg",
+      "Tablet",
+      "Cholesterol"
+    ],
+    [
+      "Ezetimibe",
+      "Ezetrol",
+      "10mg",
+      "Tablet",
+      "Cholesterol"
+    ],
+    [
+      "Fenofibrate",
+      "Lipanthyl",
+      "145mg",
+      "Capsule",
+      "Cholesterol"
+    ],
+    [
+      "Fenofibrate",
+      "Lipanthyl",
+      "160mg",
+      "Capsule",
+      "Cholesterol"
+    ],
+    [
+      "Pravastatin",
+      "Pravachol",
+      "20mg",
+      "Tablet",
+      "Cholesterol"
+    ],
+    [
+      "Rosuvastatin",
+      "Crestor",
+      "10mg",
+      "Tablet",
+      "Cholesterol"
+    ],
+    [
+      "Rosuvastatin",
+      "Crestor",
+      "5mg",
+      "Tablet",
+      "Cholesterol"
+    ],
+    [
+      "Rosuvastatin",
+      "Crestor",
+      "20mg",
+      "Tablet",
+      "Cholesterol"
+    ],
+    [
+      "Simvastatin",
+      "Zocor",
+      "20mg",
+      "Tablet",
+      "Cholesterol"
+    ],
+    [
+      "Simvastatin + Amlodipine",
+      "Caduet",
+      "20mg/10mg",
+      "Tablet",
+      "Cholesterol"
+    ],
+    [
+      "Simvastatin + Ezetimibe",
+      "Vytorin",
+      "20mg/10mg",
+      "Tablet",
+      "Cholesterol"
+    ],
+    [
+      "Beclomethasone",
+      "Beconase",
+      "50mcg",
+      "Nasal Spray",
+      "Corticosteroids"
+    ],
+    [
+      "Dexamethasone",
+      "Decadron",
+      "4mg",
+      "Tablet",
+      "Corticosteroids"
+    ],
+    [
+      "Dexamethasone",
+      "Decadron",
+      "0.5mg",
+      "Tablet",
+      "Corticosteroids"
+    ],
+    [
+      "Hydrocortisone",
+      "Cortef",
+      "20mg",
+      "Tablet",
+      "Corticosteroids"
+    ],
+    [
+      "Hydrocortisone",
+      "Solu-Cortef",
+      "100mg",
+      "Injection",
+      "Corticosteroids"
+    ],
+    [
+      "Methylprednisolone",
+      "Medrol",
+      "4mg",
+      "Tablet",
+      "Corticosteroids"
+    ],
+    [
+      "Prednisolone",
+      "Dakacort",
+      "5mg",
+      "Tablet",
+      "Corticosteroids"
+    ],
+    [
+      "Prednisone",
+      "Deltasone",
+      "5mg",
+      "Tablet",
+      "Corticosteroids"
+    ],
+    [
+      "Adapalene",
+      "Differin",
+      "0.1%",
+      "Gel",
+      "Dermatology"
+    ],
+    [
+      "Benzyl Benzoate",
+      "Ascabiol",
+      "25%",
+      "Lotion",
+      "Dermatology"
+    ],
+    [
+      "Betamethasone",
+      "Diprolene",
+      "0.05% Cream",
+      "Topical",
+      "Dermatology"
+    ],
+    [
+      "Clindamycin + Benzoyl Peroxide",
+      "BenzaClin",
+      "",
+      "Gel",
+      "Dermatology"
+    ],
+    [
+      "Erythromycin + Benzoyl Peroxide",
+      "Benzamycin",
+      "",
+      "Gel",
+      "Dermatology"
+    ],
+    [
+      "Hydrocortisone",
+      "Hyderm",
+      "1% Cream",
+      "Topical",
+      "Dermatology"
+    ],
+    [
+      "Hydrocortisone + Neomycin",
+      "Cortisporin",
+      "",
+      "Ointment",
+      "Dermatology"
+    ],
+    [
+      "Hydrocortisone + Zinc Oxide",
+      "Dermacool",
+      "1%/15%",
+      "Ointment",
+      "Dermatology"
+    ],
+    [
+      "Mupirocin",
+      "Bactroban",
+      "2% Ointment",
+      "Topical",
+      "Dermatology"
+    ],
+    [
+      "Permethrin",
+      "Nix",
+      "5% Cream",
+      "Topical",
+      "Dermatology"
+    ],
+    [
+      "Retinol",
+      "Retin-A",
+      "0.025%",
+      "Topical",
+      "Dermatology"
+    ],
+    [
+      "Salicylic Acid",
+      "Dermasolve",
+      "10%",
+      "Topical",
+      "Dermatology"
+    ],
+    [
+      "Bumetanide",
+      "Bumex",
+      "1mg",
+      "Tablet",
+      "Diuretics"
+    ],
+    [
+      "Chlorthalidone",
+      "Hygroton",
+      "25mg",
+      "Tablet",
+      "Diuretics"
+    ],
+    [
+      "Furosemide",
+      "Lasix",
+      "40mg",
+      "Tablet",
+      "Diuretics"
+    ],
+    [
+      "Spironolactone",
+      "Aldactone",
+      "100mg",
+      "Tablet",
+      "Diuretics"
+    ],
+    [
+      "Spironolactone + Hydrochlorothiazide",
+      "Aldactazide",
+      "25mg/25mg",
+      "Tablet",
+      "Diuretics"
+    ],
+    [
+      "Bromocriptine",
+      "Parlodel",
+      "2.5mg",
+      "Tablet",
+      "Endocrinology"
+    ],
+    [
+      "Cabergoline",
+      "Dostinex",
+      "0.5mg",
+      "Tablet",
+      "Endocrinology"
+    ],
+    [
+      "Levothyroxine",
+      "Euthyrox",
+      "50mcg",
+      "Tablet",
+      "Endocrinology"
+    ],
+    [
+      "Methimazole",
+      "Tapazole",
+      "10mg",
+      "Tablet",
+      "Endocrinology"
+    ],
+    [
+      "Propylthiouracil",
+      "PTU",
+      "100mg",
+      "Tablet",
+      "Endocrinology"
+    ],
+    [
+      "Sildenafil",
+      "Viagra",
+      "50mg",
+      "Tablet",
+      "Erectile Dysfunction"
+    ],
+    [
+      "Sildenafil",
+      "Viagra",
+      "100mg",
+      "Tablet",
+      "Erectile Dysfunction"
+    ],
+    [
+      "Tadalafil",
+      "Cialis",
+      "20mg",
+      "Tablet",
+      "Erectile Dysfunction"
+    ],
+    [
+      "Antacid",
+      "Gaviscon",
+      "",
+      "Chewable Tablet",
+      "GI"
+    ],
+    [
+      "Bisacodyl",
+      "Dulcolax",
+      "5mg",
+      "Tablet",
+      "GI"
+    ],
+    [
+      "Bismuth Subcitrate",
+      "Pepto-Bismol",
+      "",
+      "Tablet",
+      "GI"
+    ],
+    [
+      "Bismuth Subsalicylate",
+      "Pepto-Bismol",
+      "",
+      "Liquid",
+      "GI"
+    ],
+    [
+      "Budesonide",
+      "Entocort",
+      "9mg",
+      "Capsule",
+      "GI"
+    ],
+    [
+      "Dicyclomine",
+      "Bentyl",
+      "20mg",
+      "Capsule",
+      "GI"
+    ],
+    [
+      "Domperidone",
+      "Motilium",
+      "10mg",
+      "Tablet",
+      "GI"
+    ],
+    [
+      "Esomeprazole",
+      "Nexium",
+      "20mg",
+      "Tablet",
+      "GI"
+    ],
+    [
+      "Hyoscine Butylbromide",
+      "Buscopan",
+      "10mg",
+      "Tablet",
+      "GI"
+    ],
+    [
+      "Lactulose",
+      "Duphalac",
+      "10g/15ml",
+      "Syrup",
+      "GI"
+    ],
+    [
+      "Lansoprazole",
+      "Prevacid",
+      "15mg",
+      "Capsule",
+      "GI"
+    ],
+    [
+      "Linaclotide",
+      "Linzess",
+      "145mcg",
+      "Capsule",
+      "GI"
+    ],
+    [
+      "Loperamide",
+      "Imodium",
+      "2mg",
+      "Capsule",
+      "GI"
+    ],
+    [
+      "Loperamide",
+      "Imodium",
+      "2mg",
+      "Tablet",
+      "GI"
+    ],
+    [
+      "Mesalazine",
+      "Asacol",
+      "400mg",
+      "Tablet",
+      "GI"
+    ],
+    [
+      "Metoclopramide",
+      "Maxolon",
+      "10mg",
+      "Tablet",
+      "GI"
+    ],
+    [
+      "Omeprazole",
+      "Losec",
+      "20mg",
+      "Capsule",
+      "GI"
+    ],
+    [
+      "Ondansetron",
+      "Zofran",
+      "4mg",
+      "Tablet",
+      "GI"
+    ],
+    [
+      "Ondansetron",
+      "Zofran",
+      "8mg",
+      "Tablet",
+      "GI"
+    ],
+    [
+      "Pancreatin",
+      "Creon",
+      "",
+      "Capsule",
+      "GI"
+    ],
+    [
+      "Pancreatin",
+      "Creon",
+      "10,000IU",
+      "Capsule",
+      "GI"
+    ],
+    [
+      "Pantoprazole",
+      "Protium",
+      "40mg",
+      "Tablet",
+      "GI"
+    ],
+    [
+      "Prochlorperazine",
+      "Stemetil",
+      "5mg",
+      "Tablet",
+      "GI"
+    ],
+    [
+      "Prochlorperazine",
+      "Stemetil",
+      "10mg",
+      "Tablet",
+      "GI"
+    ],
+    [
+      "Rabeprazole",
+      "Pariet",
+      "20mg",
+      "Tablet",
+      "GI"
+    ],
+    [
+      "Ranitidine",
+      "Zantac",
+      "150mg",
+      "Tablet",
+      "GI"
+    ],
+    [
+      "Rifaximin",
+      "Xifaxan",
+      "550mg",
+      "Tablet",
+      "GI"
+    ],
+    [
+      "Sodium Picosulfate",
+      "Laxoberon",
+      "10mg",
+      "Tablet",
+      "GI"
+    ],
+    [
+      "Sucralfate",
+      "Sulfate",
+      "1g",
+      "Tablet",
+      "GI"
+    ],
+    [
+      "Ethinylestradiol + Levonorgestrel",
+      "Norplant",
+      "30mcg/150mcg",
+      "Tablet",
+      "Gynecology"
+    ],
+    [
+      "Medroxyprogesterone",
+      "Depo-Provera",
+      "150mg/ml",
+      "Injection",
+      "Gynecology"
+    ],
+    [
+      "Misoprostol",
+      "Cytotec",
+      "200mcg",
+      "Tablet",
+      "Gynecology"
+    ],
+    [
+      "Norethisterone",
+      "Primolut-N",
+      "5mg",
+      "Tablet",
+      "Gynecology"
+    ],
+    [
+      "Oxytocin",
+      "Syntocinon",
+      "10IU/ml",
+      "Injection",
+      "Gynecology"
+    ],
+    [
+      "Tranexamic Acid",
+      "Cyklokapron",
+      "500mg",
+      "Tablet",
+      "Gynecology"
+    ],
+    [
+      "Azathioprine",
+      "Imuran",
+      "50mg",
+      "Tablet",
+      "Immunosuppressants"
+    ],
+    [
+      "Cyclosporine",
+      "Neoral",
+      "50mg",
+      "Capsule",
+      "Immunosuppressants"
+    ],
+    [
+      "Methotrexate",
+      "Trexall",
+      "2.5mg",
+      "Tablet",
+      "Immunosuppressants"
+    ],
+    [
+      "Mycophenolate",
+      "CellCept",
+      "500mg",
+      "Tablet",
+      "Immunosuppressants"
+    ],
+    [
+      "Tacrolimus",
+      "Prograf",
+      "0.1%",
+      "Topical",
+      "Immunosuppressants"
+    ],
+    [
+      "Amitriptyline",
+      "Elavil",
+      "25mg",
+      "Tablet",
+      "Neurology"
+    ],
+    [
+      "Carbamazepine",
+      "Tegretol",
+      "200mg",
+      "Tablet",
+      "Neurology"
+    ],
+    [
+      "Clonazepam",
+      "Klonopin",
+      "0.5mg",
+      "Tablet",
+      "Neurology"
+    ],
+    [
+      "Diazepam",
+      "Valium",
+      "5mg",
+      "Tablet",
+      "Neurology"
+    ],
+    [
+      "Diazepam",
+      "Valium",
+      "10mg",
+      "Tablet",
+      "Neurology"
+    ],
+    [
+      "Fluoxetine",
+      "Prozac",
+      "20mg",
+      "Tablet",
+      "Neurology"
+    ],
+    [
+      "Gabapentin",
+      "Neurontin",
+      "300mg",
+      "Capsule",
+      "Neurology"
+    ],
+    [
+      "Lamotrigine",
+      "Lamictal",
+      "100mg",
+      "Tablet",
+      "Neurology"
+    ],
+    [
+      "Pregabalin",
+      "Lyrica",
+      "75mg",
+      "Capsule",
+      "Neurology"
+    ],
+    [
+      "Rizatriptan",
+      "Maxalt",
+      "10mg",
+      "Tablet",
+      "Neurology"
+    ],
+    [
+      "Sertraline",
+      "Zoloft",
+      "50mg",
+      "Tablet",
+      "Neurology"
+    ],
+    [
+      "Sodium Valproate",
+      "Depakote",
+      "200mg",
+      "Tablet",
+      "Neurology"
+    ],
+    [
+      "Sumatriptan",
+      "Imitrex",
+      "50mg",
+      "Tablet",
+      "Neurology"
+    ],
+    [
+      "Valproate Sodium",
+      "Depakene",
+      "200mg",
+      "Tablet",
+      "Neurology"
+    ],
+    [
+      "Aloe Vera",
+      "Aloe",
+      "",
+      "Gel",
+      "OTC"
+    ],
+    [
+      "Aloe Vera Gel",
+      "Aloe-Vera",
+      "",
+      "Gel",
+      "OTC"
+    ],
+    [
+      "Benzalkonium Chloride",
+      "Zephiran",
+      "0.1%",
+      "Solution",
+      "OTC"
+    ],
+    [
+      "Benzalkonium Chloride",
+      "Zephiran",
+      "0.13%",
+      "Solution",
+      "OTC"
+    ],
+    [
+      "Bimatoprost",
+      "Lumigan",
+      "0.01%",
+      "Eye Drops",
+      "OTC"
+    ],
+    [
+      "Brimonidine",
+      "Alphagan",
+      "0.2%",
+      "Eye Drops",
+      "OTC"
+    ],
+    [
+      "Calamine",
+      "Caladryl",
+      "",
+      "Lotion",
+      "OTC"
+    ],
+    [
+      "Calamine Lotion",
+      "Caladryl",
+      "",
+      "Lotion",
+      "OTC"
+    ],
+    [
+      "Calcium Carbonate + Magnesium Hydroxide",
+      "Rolaids",
+      "",
+      "Chewable Tablet",
+      "OTC"
+    ],
+    [
+      "Calcium Carbonate + Magnesium Hydroxide + Simethicone",
+      "Maalox",
+      "",
+      "Liquid",
+      "OTC"
+    ],
+    [
+      "Carbamide Peroxide",
+      "Debrox",
+      "6.5%",
+      "Drops",
+      "OTC"
+    ],
+    [
+      "Cetrimide",
+      "Savlon",
+      "2%",
+      "Solution",
+      "OTC"
+    ],
+    [
+      "Chlorhexidine",
+      "Savlon",
+      "0.2%",
+      "Solution",
+      "OTC"
+    ],
+    [
+      "Cold and Flu Capsule",
+      "Lemsip",
+      "500mg",
+      "Capsule",
+      "OTC"
+    ],
+    [
+      "Cough Syrup",
+      "Benylin",
+      "5ml",
+      "Syrup",
+      "OTC"
+    ],
+    [
+      "Dextromethorphan",
+      "Robitussin",
+      "10mg",
+      "Syrup",
+      "OTC"
+    ],
+    [
+      "Docusate Sodium",
+      "Colace",
+      "100mg",
+      "Capsule",
+      "OTC"
+    ],
+    [
+      "Ear drops",
+      "Otex",
+      "1%",
+      "Drops",
+      "OTC"
+    ],
+    [
+      "Eyedrops",
+      "Tears Naturale",
+      "0.5%",
+      "Solution",
+      "OTC"
+    ],
+    [
+      "Glucose",
+      "Dextrose",
+      "5%",
+      "Solution",
+      "OTC"
+    ],
+    [
+      "Glycerin",
+      "Pedia-Lax",
+      "1g",
+      "Suppository",
+      "OTC"
+    ],
+    [
+      "Glycerin",
+      "Pedia-Lax",
+      "",
+      "Suppository",
+      "OTC"
+    ],
+    [
+      "Glycerin + Boric Acid",
+      "BoroPlus",
+      "5%",
+      "Drops",
+      "OTC"
+    ],
+    [
+      "Honey + Lemon",
+      "Halls",
+      "",
+      "Lozenge",
+      "OTC"
+    ],
+    [
+      "Hydrogen Peroxide",
+      "Perox-A-Mint",
+      "3%",
+      "Solution",
+      "OTC"
+    ],
+    [
+      "Isotonic Saline",
+      "Sterimar",
+      "",
+      "Spray",
+      "OTC"
+    ],
+    [
+      "Methylcellulose",
+      "Viscotears",
+      "",
+      "Drops",
+      "OTC"
+    ],
+    [
+      "Methylcellulose",
+      "Cologel",
+      "",
+      "Capsule",
+      "OTC"
+    ],
+    [
+      "Naphazoline",
+      "Naphcon",
+      "0.012%",
+      "Eye Drops",
+      "OTC"
+    ],
+    [
+      "Nasal Decongestant",
+      "Otrivin",
+      "0.05%",
+      "Nasal Spray",
+      "OTC"
+    ],
+    [
+      "Oxymetazoline",
+      "Afrin",
+      "0.05%",
+      "Nasal Spray",
+      "OTC"
+    ],
+    [
+      "Paracetamol + Phenylephrine",
+      "Actifed",
+      "500mg/5mg",
+      "Tablet",
+      "OTC"
+    ],
+    [
+      "Petroleum Jelly",
+      "Vaseline",
+      "",
+      "Ointment",
+      "OTC"
+    ],
+    [
+      "Petroleum Jelly + Mineral Oil",
+      "Vaseline Petroleum Jelly",
+      "",
+      "Ointment",
+      "OTC"
+    ],
+    [
+      "Phenylephrine",
+      "Neo-Synephrine",
+      "0.25%",
+      "Nasal Spray",
+      "OTC"
+    ],
+    [
+      "Pilocarpine",
+      "Isopto Carpine",
+      "2%",
+      "Eye Drops",
+      "OTC"
+    ],
+    [
+      "Polyethylene Glycol",
+      "MiraLAX",
+      "17g",
+      "Powder",
+      "OTC"
+    ],
+    [
+      "Povidone Iodine",
+      "Betadine",
+      "10%",
+      "Solution",
+      "OTC"
+    ],
+    [
+      "Povidone-iodine",
+      "Betadine",
+      "10%",
+      "Solution",
+      "OTC"
+    ],
+    [
+      "Saline Nasal Spray",
+      "Ocean",
+      "",
+      "Spray",
+      "OTC"
+    ],
+    [
+      "Senna",
+      "Senokot",
+      "17.2mg",
+      "Tablet",
+      "OTC"
+    ],
+    [
+      "Sodium Bicarbonate",
+      "Bicarbonate",
+      "8.4%",
+      "Solution",
+      "OTC"
+    ],
+    [
+      "Sodium Bicarbonate",
+      "Alka-Seltzer",
+      "",
+      "Effervescent Tablet",
+      "OTC"
+    ],
+    [
+      "Sodium Chloride",
+      "Normal Saline",
+      "0.9%",
+      "Solution",
+      "OTC"
+    ],
+    [
+      "Sodium Cromoglycate",
+      "Opticrom",
+      "2%",
+      "Eye Drops",
+      "OTC"
+    ],
+    [
+      "Sulfacetamide",
+      "Bleph-10",
+      "10%",
+      "Eye Drops",
+      "OTC"
+    ],
+    [
+      "Sunscreen",
+      "Neutrogena",
+      "SPF 30",
+      "Lotion",
+      "OTC"
+    ],
+    [
+      "Sunscreen",
+      "Coppertone",
+      "SPF 50",
+      "Lotion",
+      "OTC"
+    ],
+    [
+      "Timolol",
+      "Timoptic",
+      "0.5%",
+      "Eye Drops",
+      "OTC"
+    ],
+    [
+      "Travoprost",
+      "Travatan",
+      "0.004%",
+      "Eye Drops",
+      "OTC"
+    ],
+    [
+      "Zinc Oxide",
+      "Desitin",
+      "15%",
+      "Cream",
+      "OTC"
+    ],
+    [
+      "Zinc Oxide",
+      "Desitin",
+      "20%",
+      "Cream",
+      "OTC"
+    ],
+    [
+      "Clozapine",
+      "Clozaril",
+      "100mg",
+      "Tablet",
+      "Psychiatry"
+    ],
+    [
+      "Duloxetine",
+      "Cymbalta",
+      "60mg",
+      "Capsule",
+      "Psychiatry"
+    ],
+    [
+      "Escitalopram",
+      "Lexapro",
+      "10mg",
+      "Tablet",
+      "Psychiatry"
+    ],
+    [
+      "Haloperidol",
+      "Haldol",
+      "5mg",
+      "Tablet",
+      "Psychiatry"
+    ],
+    [
+      "Hydroxyzine",
+      "Atarax",
+      "25mg",
+      "Tablet",
+      "Psychiatry"
+    ],
+    [
+      "Lithium",
+      "Eskalith",
+      "300mg",
+      "Tablet",
+      "Psychiatry"
+    ],
+    [
+      "Methylphenidate",
+      "Ritalin",
+      "10mg",
+      "Tablet",
+      "Psychiatry"
+    ],
+    [
+      "Mirtazapine",
+      "Remeron",
+      "15mg",
+      "Tablet",
+      "Psychiatry"
+    ],
+    [
+      "Olanzapine",
+      "Zyprexa",
+      "5mg",
+      "Tablet",
+      "Psychiatry"
+    ],
+    [
+      "Olanzapine + Fluoxetine",
+      "Symbyax",
+      "6mg/25mg",
+      "Tablet",
+      "Psychiatry"
+    ],
+    [
+      "Paroxetine",
+      "Paxil",
+      "20mg",
+      "Tablet",
+      "Psychiatry"
+    ],
+    [
+      "Quetiapine",
+      "Seroquel",
+      "25mg",
+      "Tablet",
+      "Psychiatry"
+    ],
+    [
+      "Risperidone",
+      "Risperdal",
+      "2mg",
+      "Tablet",
+      "Psychiatry"
+    ],
+    [
+      "Venlafaxine",
+      "Effexor",
+      "75mg",
+      "Tablet",
+      "Psychiatry"
+    ],
+    [
+      "Ziprasidone",
+      "Geodon",
+      "20mg",
+      "Capsule",
+      "Psychiatry"
+    ],
+    [
+      "Azelastine",
+      "Optivar",
+      "0.1%",
+      "Nasal Spray",
+      "Respiratory"
+    ],
+    [
+      "Bromhexine",
+      "Bisolvon",
+      "8mg",
+      "Tablet",
+      "Respiratory"
+    ],
+    [
+      "Budesonide",
+      "Pulmicort",
+      "200mcg",
+      "Inhaler",
+      "Respiratory"
+    ],
+    [
+      "Budesonide",
+      "Pulmicort",
+      "100mcg",
+      "Inhaler",
+      "Respiratory"
+    ],
+    [
+      "Budesonide",
+      "Rhinocort",
+      "64mcg",
+      "Nasal Spray",
+      "Respiratory"
+    ],
+    [
+      "Budesonide + Formoterol",
+      "Symbicort",
+      "200mcg/6mcg",
+      "Inhaler",
+      "Respiratory"
+    ],
+    [
+      "Budesonide + Formoterol",
+      "Symbicort",
+      "100mcg/6mcg",
+      "Inhaler",
+      "Respiratory"
+    ],
+    [
+      "Fluticasone",
+      "Flixotide",
+      "50mcg",
+      "Inhaler",
+      "Respiratory"
+    ],
+    [
+      "Fluticasone",
+      "Flonase",
+      "50mcg",
+      "Nasal Spray",
+      "Respiratory"
+    ],
+    [
+      "Fluticasone + Salmeterol",
+      "Seretide",
+      "250mcg/50mcg",
+      "Inhaler",
+      "Respiratory"
+    ],
+    [
+      "Fluticasone + Salmeterol",
+      "Seretide",
+      "500mcg/50mcg",
+      "Inhaler",
+      "Respiratory"
+    ],
+    [
+      "Fluticasone Nasal Spray",
+      "Flonase",
+      "50mcg",
+      "Nasal Spray",
+      "Respiratory"
+    ],
+    [
+      "Guaifenesin",
+      "Benylin",
+      "100mg",
+      "Syrup",
+      "Respiratory"
+    ],
+    [
+      "Guaifenesin + Codeine",
+      "Bronchosedan",
+      "100mg/10mg",
+      "Syrup",
+      "Respiratory"
+    ],
+    [
+      "Ipratropium",
+      "Atrovent",
+      "20mcg",
+      "Inhaler",
+      "Respiratory"
+    ],
+    [
+      "Levocetirizine + Montelukast",
+      "Montair LC",
+      "5mg/10mg",
+      "Tablet",
+      "Respiratory"
+    ],
+    [
+      "Montelukast",
+      "Singulair",
+      "10mg",
+      "Tablet",
+      "Respiratory"
+    ],
+    [
+      "Montelukast",
+      "Singulair",
+      "5mg",
+      "Tablet",
+      "Respiratory"
+    ],
+    [
+      "Promethazine + Codeine",
+      "Phenergan Codeine",
+      "6mg/10mg",
+      "Syrup",
+      "Respiratory"
+    ],
+    [
+      "Salbutamol",
+      "Ventolin",
+      "100mcg",
+      "Inhaler",
+      "Respiratory"
+    ],
+    [
+      "Salbutamol",
+      "Ventolin",
+      "2.5mg/ml",
+      "Nebuliser",
+      "Respiratory"
+    ],
+    [
+      "Salmeterol",
+      "Serevent",
+      "50mcg",
+      "Inhaler",
+      "Respiratory"
+    ],
+    [
+      "Sildenafil",
+      "Revatio",
+      "20mg",
+      "Tablet",
+      "Respiratory"
+    ],
+    [
+      "Terbutaline",
+      "Bricanyl",
+      "500mcg",
+      "Inhaler",
+      "Respiratory"
+    ],
+    [
+      "Theophylline",
+      "Uniphyl",
+      "200mg",
+      "Tablet",
+      "Respiratory"
+    ],
+    [
+      "Tiotropium",
+      "Spiriva",
+      "18mcg",
+      "Inhaler",
+      "Respiratory"
+    ],
+    [
+      "Calcitriol",
+      "Rocaltrol",
+      "0.25mcg",
+      "Capsule",
+      "Supplements"
+    ],
+    [
+      "Calcium + Vitamin D",
+      "Calcijex",
+      "500mg/400IU",
+      "Tablet",
+      "Supplements"
+    ],
+    [
+      "Calcium + Vitamin D + Zinc",
+      "Caltrate Plus",
+      "500mg/400IU/15mg",
+      "Tablet",
+      "Supplements"
+    ],
+    [
+      "Calcium Carbonate",
+      "Caltrate",
+      "500mg",
+      "Tablet",
+      "Supplements"
+    ],
+    [
+      "Cholecalciferol",
+      "Ostelin",
+      "1000IU",
+      "Tablet",
+      "Supplements"
+    ],
+    [
+      "Coenzyme Q10",
+      "CoQ10",
+      "100mg",
+      "Capsule",
+      "Supplements"
+    ],
+    [
+      "Electrolyte Solution",
+      "ORS",
+      "4.5g",
+      "Powder",
+      "Supplements"
+    ],
+    [
+      "Ergocalciferol",
+      "Drisdol",
+      "50,000IU",
+      "Tablet",
+      "Supplements"
+    ],
+    [
+      "Ferrous Sulfate",
+      "Ferrogradumet",
+      "65mg",
+      "Tablet",
+      "Supplements"
+    ],
+    [
+      "Folic Acid",
+      "Folvite",
+      "5mg",
+      "Tablet",
+      "Supplements"
+    ],
+    [
+      "Folic Acid",
+      "Folvite",
+      "1mg",
+      "Tablet",
+      "Supplements"
+    ],
+    [
+      "Folic Acid + Ferrous Sulfate",
+      "Fefol",
+      "5mg/60mg",
+      "Tablet",
+      "Supplements"
+    ],
+    [
+      "Ginkgo Biloba",
+      "Tanakan",
+      "40mg",
+      "Tablet",
+      "Supplements"
+    ],
+    [
+      "Glucosamine",
+      "Osteo Bi-Flex",
+      "1500mg",
+      "Tablet",
+      "Supplements"
+    ],
+    [
+      "Iron",
+      "Ferrous Sulfate",
+      "65mg",
+      "Tablet",
+      "Supplements"
+    ],
+    [
+      "Iron + Folic Acid",
+      "Ferrogradumet",
+      "210mg/5mg",
+      "Tablet",
+      "Supplements"
+    ],
+    [
+      "Iron + Folic Acid",
+      "Ferrogradumet",
+      "65mg/5mg",
+      "Tablet",
+      "Supplements"
+    ],
+    [
+      "Levocarnitine",
+      "Carnitor",
+      "330mg",
+      "Capsule",
+      "Supplements"
+    ],
+    [
+      "Magnesium",
+      "Magnesium Oxide",
+      "250mg",
+      "Tablet",
+      "Supplements"
+    ],
+    [
+      "Magnesium + Vitamin B6",
+      "Magnesium B6",
+      "250mg/25mg",
+      "Tablet",
+      "Supplements"
+    ],
+    [
+      "Magnesium Oxide",
+      "Magnesium Oxide",
+      "250mg",
+      "Tablet",
+      "Supplements"
+    ],
+    [
+      "Melatonin",
+      "Circadin",
+      "3mg",
+      "Tablet",
+      "Supplements"
+    ],
+    [
+      "Multivitamin",
+      "Centrum",
+      "One a day",
+      "Tablet",
+      "Supplements"
+    ],
+    [
+      "N-acetylcysteine",
+      "Fluimucil",
+      "600mg",
+      "Tablet",
+      "Supplements"
+    ],
+    [
+      "Niacin",
+      "Niaspan",
+      "500mg",
+      "Tablet",
+      "Supplements"
+    ],
+    [
+      "Nicotinamide",
+      "Niacinamide",
+      "250mg",
+      "Tablet",
+      "Supplements"
+    ],
+    [
+      "Omega-3",
+      "Fish Oil",
+      "1000mg",
+      "Capsule",
+      "Supplements"
+    ],
+    [
+      "Omega-3 + Vitamin E",
+      "Omacor",
+      "1000mg/10mg",
+      "Capsule",
+      "Supplements"
+    ],
+    [
+      "Potassium Chloride",
+      "Slow-K",
+      "10mEq",
+      "Tablet",
+      "Supplements"
+    ],
+    [
+      "Probiotic",
+      "Lactobacillus",
+      "1 Billion",
+      "Capsule",
+      "Supplements"
+    ],
+    [
+      "Vitamin A",
+      "Retinol",
+      "10,000IU",
+      "Capsule",
+      "Supplements"
+    ],
+    [
+      "Vitamin B Complex",
+      "Neurobion",
+      "",
+      "Tablet",
+      "Supplements"
+    ],
+    [
+      "Vitamin B1",
+      "Thiamine",
+      "100mg",
+      "Tablet",
+      "Supplements"
+    ],
+    [
+      "Vitamin B12",
+      "Cobalamin",
+      "1000mcg",
+      "Tablet",
+      "Supplements"
+    ],
+    [
+      "Vitamin B2",
+      "Riboflavin",
+      "100mg",
+      "Tablet",
+      "Supplements"
+    ],
+    [
+      "Vitamin B3",
+      "Niacin",
+      "100mg",
+      "Tablet",
+      "Supplements"
+    ],
+    [
+      "Vitamin B6",
+      "Pyridoxine",
+      "50mg",
+      "Tablet",
+      "Supplements"
+    ],
+    [
+      "Vitamin C",
+      "Redoxon",
+      "1000mg",
+      "Tablet",
+      "Supplements"
+    ],
+    [
+      "Vitamin D3",
+      "Cholecalciferol",
+      "400IU",
+      "Tablet",
+      "Supplements"
+    ],
+    [
+      "Vitamin E",
+      "Toco-8",
+      "400IU",
+      "Capsule",
+      "Supplements"
+    ],
+    [
+      "Zinc Sulfate",
+      "Galzin",
+      "20mg",
+      "Tablet",
+      "Supplements"
+    ],
+    [
+      "Phenazopyridine",
+      "Pyridium",
+      "100mg",
+      "Tablet",
+      "Urinary"
+    ],
+    [
+      "Alprostadil",
+      "Caverject",
+      "20mcg",
+      "Injection",
+      "Urology"
+    ],
+    [
+      "Dutasteride",
+      "Avodart",
+      "0.5mg",
+      "Capsule",
+      "Urology"
+    ],
+    [
+      "Finasteride",
+      "Propecia",
+      "5mg",
+      "Tablet",
+      "Urology"
+    ],
+    [
+      "Oxybutynin",
+      "Ditropan",
+      "5mg",
+      "Tablet",
+      "Urology"
+    ],
+    [
+      "Tamsulosin",
+      "Flomax",
+      "0.4mg",
+      "Tablet",
+      "Urology"
+    ],
+    [
+      "Tamsulosin + Dutasteride",
+      "Jalyn",
+      "0.4mg/0.5mg",
+      "Tablet",
+      "Urology"
+    ],
+    [
+      "Tolterodine",
+      "Detrusitol",
+      "2mg",
+      "Tablet",
+      "Urology"
+    ],
+    [
+      "Diphtheria + Tetanus",
+      "Diphtheria",
+      "0.5ml",
+      "Injection",
+      "Vaccines"
+    ],
+    [
+      "Hepatitis B vaccine",
+      "Engerix-B",
+      "0.5ml",
+      "Injection",
+      "Vaccines"
+    ],
+    [
+      "Influenza vaccine",
+      "Fluarix",
+      "0.5ml",
+      "Injection",
+      "Vaccines"
+    ],
+    [
+      "Measles vaccine",
+      "M-VAC",
+      "0.5ml",
+      "Injection",
+      "Vaccines"
+    ],
+    [
+      "Polio vaccine",
+      "Oral Polio",
+      "0.5ml",
+      "Oral",
+      "Vaccines"
+    ],
+    [
+      "Tetanus toxoid",
+      "Tetanus",
+      "0.5ml",
+      "Injection",
+      "Vaccines"
+    ],
+    [
+      "Yellow fever vaccine",
+      "Stamaril",
+      "0.5ml",
+      "Injection",
+      "Vaccines"
+    ],
+    [
+      "Betahistine",
+      "Serc",
+      "16mg",
+      "Tablet",
+      "Vestibular"
+    ]
+  ]
+}

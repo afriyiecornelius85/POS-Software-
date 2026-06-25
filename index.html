@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Akopharmah POS</title>
+  <!-- Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/tabler-icons@1.35.0/iconfont/tabler-icons.min.css" rel="stylesheet" integrity="sha384-UVLIszRGnNiygbeLRA2bnlgskAUEpET1kGFi6O5KKkYwYhcbJJQys/7BnZIx7Gyv" crossorigin="anonymous"/>
+  <!-- App styles -->
+  <link rel="stylesheet" href="pos.css" />
+</head>
+<body>
+
+  <div class="toast toast--success" id="toast"><i class="ti ti-check" id="toastIcon"></i><span id="toastMsg">Saved</span><div class="toast-progress-bar" id="toastProgressBar"></div></div>
+  <!-- Keyboard shortcut overlay (#8) -->
+  <div class="shortcut-overlay" id="shortcutOverlay" role="dialog" aria-modal="true" aria-label="Keyboard shortcuts" onclick="if(event.target===this)closeShortcutOverlay()">
+    <div class="shortcut-panel">
+      <h2>Keyboard Shortcuts <button class="shortcut-close" onclick="closeShortcutOverlay()" aria-label="Close"><i class="ti ti-x"></i></button></h2>
+      <div class="shortcut-group">
+        <div class="shortcut-group-title">Navigation</div>
+        <div class="shortcut-row"><span>Go to POS / Sell</span><span class="shortcut-keys"><kbd>P</kbd></span></div>
+        <div class="shortcut-row"><span>Go to Dashboard</span><span class="shortcut-keys"><kbd>D</kbd></span></div>
+        <div class="shortcut-row"><span>Go to Inventory</span><span class="shortcut-keys"><kbd>I</kbd></span></div>
+        <div class="shortcut-row"><span>Go to Purchases / GRN</span><span class="shortcut-keys"><kbd>G</kbd></span></div>
+        <div class="shortcut-row"><span>Go to Reports</span><span class="shortcut-keys"><kbd>R</kbd></span></div>
+        <div class="shortcut-row"><span>Go to Patients</span><span class="shortcut-keys"><kbd>C</kbd></span></div>
+        <div class="shortcut-row"><span>Go back (browser)</span><span class="shortcut-keys"><kbd>Alt</kbd><kbd>←</kbd></span></div>
+      </div>
+      <div class="shortcut-group">
+        <div class="shortcut-group-title">POS</div>
+        <div class="shortcut-row"><span>Focus drug search</span><span class="shortcut-keys"><kbd>F</kbd></span></div>
+        <div class="shortcut-row"><span>Process checkout</span><span class="shortcut-keys"><kbd>Enter</kbd> <span style="font-size:11px;color:var(--muted)">in payment field</span></span></div>
+        <div class="shortcut-row"><span>New sale (from receipt)</span><span class="shortcut-keys"><kbd>N</kbd></span></div>
+        <div class="shortcut-row"><span>Print receipt</span><span class="shortcut-keys"><kbd>Enter</kbd> <span style="font-size:11px;color:var(--muted)">on receipt</span></span></div>
+      </div>
+      <div class="shortcut-group">
+        <div class="shortcut-group-title">General</div>
+        <div class="shortcut-row"><span>Show this overlay</span><span class="shortcut-keys"><kbd>?</kbd></span></div>
+        <div class="shortcut-row"><span>Close / dismiss</span><span class="shortcut-keys"><kbd>Esc</kbd></span></div>
+      </div>
+    </div>
+  </div>
+  <section id="view-login" class="overlay active">
+    <div class="login-panel">
+      <div class="login-brand-mark">
+        <img src="logo.png" alt="Akopharmah Limited logo" />
+      </div>
+      <div class="login-product">Akopharmah Limited POS</div>
+      <div class="login-version" id="loginVersion">Version 2.0.0 Upgrade</div>
+      <label for="loginUser">Username</label>
+      <input id="loginUser" type="text" placeholder="Username" autocomplete="username" list="userList" oninput="clearLoginError()" />
+      <datalist id="userList"></datalist>
+      <label for="loginPass">Password</label>
+      <input id="loginPass" type="password" placeholder="Enter password" autocomplete="current-password" oninput="clearLoginError()" />
+      <div class="login-error" id="loginError" role="alert" aria-live="assertive"></div>
+      <button class="checkout-btn" onclick="login()"><i class="ti ti-arrow-right-circle"></i> Sign in</button>
+    </div>
+  </section>
+  <div class="app">
+    <div class="topbar">
+      <div class="brand">
+        <div class="brand-icon"><img src="logo.png" alt="Akopharmah logo" /></div>
+        Akopharmah POS
+      </div>
+      <!-- #5 Breadcrumb -->
+      <div class="topbar-breadcrumb" id="topbarBreadcrumb" aria-label="Current location">
+        <span class="bc-sep"><i class="ti ti-chevron-right"></i></span>
+        <span class="bc-current" id="topbarBreadcrumbView">Dashboard</span>
+      </div>
+      <div class="topbar-branch-control" id="branchSwitchControl">
+        <button type="button" class="branch-switch-trigger" id="branchSwitchTrigger" onclick="toggleBranchDropdown(event)" aria-haspopup="listbox" aria-expanded="false">
+          <i class="ti ti-building-bank"></i>
+          <span id="branchSwitchLabel">Kwame Danso Main</span>
+          <i class="ti ti-chevron-down branch-chevron"></i>
+        </button>
+        <select id="branchSelect" class="branch-select branch-select-native" onchange="setBranch(this.value)" aria-hidden="true" tabindex="-1"></select>
+        <div class="branch-dropdown" id="branchDropdown" role="listbox" aria-label="Select branch"></div>
+      </div>
+      <div class="topbar-nav">
+        <div class="status-chip user-status-chip"><i class="ti ti-user-circle"></i> <span id="statusChipText">Guest - --:--</span></div>
+        <div class="status-chip sync-chip sync-cloud sync-local" id="syncChip" role="status" aria-live="polite" aria-label="Sync: Local" title="Sync: Local">
+          <i class="ti ti-cloud-off"></i> <span id="syncChipText">Local</span>
+          <span class="sync-dot"></span>
+        </div>
+        <div class="schedule-chip-wrapper" id="scheduleChipWrapper">
+          <button type="button" class="status-chip schedule-chip" id="scheduleChip" onclick="toggleScheduleDropdown(event)" title="Shift schedule" aria-label="Shift schedule" aria-haspopup="true" aria-expanded="false">
+            <i class="ti ti-calendar-time"></i>
+            <span id="scheduleChipText">Schedule</span>
+          </button>
+          <div class="schedule-dropdown" id="scheduleDropdown" role="menu"></div>
+        </div>
+        <div class="topbar-divider"></div>
+        <div class="notification-menu" id="notificationMenu">
+          <button type="button" class="notification-btn" onclick="toggleNotificationsDropdown(event)" aria-label="Notifications" title="Notifications" aria-haspopup="true" aria-expanded="false">
+            <i class="ti ti-bell"></i>
+            <span id="notificationBadge" class="notification-badge">0</span>
+          </button>
+          <div class="notification-dropdown" id="notificationDropdown">
+            <div class="notification-dropdown-head">
+              <strong>Notifications</strong>
+              <span id="notificationDropdownUpdated">Updated now</span>
+            </div>
+            <div id="notificationDropdownList" class="notification-dropdown-list"></div>
+            <button type="button" class="notification-dropdown-footer" onclick="closeNotificationsDropdown();showView('notifications')">Open alert center</button>
+          </div>
+        </div>
+        <button type="button" class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle light/dark mode" title="Toggle light/dark mode">
+          <i class="ti ti-moon"></i><i class="ti ti-sun"></i>
+        </button>
+        <button class="signout-btn" onclick="logout()" aria-label="Sign out" title="Sign out"><i class="ti ti-logout"></i><span>Sign out</span></button>
+      </div>
+    </div>
+
+    <div class="app-shell">
+      <aside class="topbar-right app-sidebar" aria-label="Main workflow">
+        <button type="button" class="sidebar-collapse-btn" id="sidebarCollapseBtn" onclick="toggleSidebar()" aria-label="Collapse sidebar" title="Collapse sidebar">
+          <i class="ti ti-chevron-left"></i>
+        </button>
+        <div class="sidebar-nav-group">
+          <!-- #6 Animated nav pill -->
+          <div class="nav-pill-indicator" id="navPillIndicator" aria-hidden="true"></div>
+          <button class="nav-btn active" id="nav-dashboard" onclick="showView('dashboard')"><i class="ti ti-layout-grid"></i> Dashboard</button>
+          <button class="nav-btn" id="nav-pos" onclick="showView('pos')"><i class="ti ti-shopping-cart"></i> POS / Sell</button>
+          <button class="nav-btn" id="nav-returns" onclick="showView('returns')"><span class="nav-custom-icon nav-custom-returns" aria-hidden="true"></span> Returns</button>
+          <div class="sidebar-menu-group" id="sidebar-group-inventory">
+            <button class="nav-btn nav-parent" id="nav-admin" onclick="toggleSidebarGroup('inventory')" aria-expanded="false" aria-controls="submenu-inventory"><i class="ti ti-package"></i><span>Inventory</span><i class="ti ti-chevron-down sidebar-menu-chevron"></i></button>
+            <div class="sidebar-subnav" id="submenu-inventory">
+              <button type="button" class="sidebar-subnav-btn" id="nav-inventory-list" onclick="showWorkspaceSection('inventory','list')">Drug list</button>
+              <button type="button" class="sidebar-subnav-btn" id="nav-inventory-editor" onclick="showWorkspaceSection('inventory','editor')">Drug editor</button>
+              <button type="button" class="sidebar-subnav-btn" id="nav-inventory-transfer" onclick="showWorkspaceSection('inventory','transfer')">Stock transfer</button>
+              <button type="button" class="sidebar-subnav-btn" id="nav-inventory-audit" onclick="showWorkspaceSection('inventory','audit')">Audit log</button>
+              <button type="button" class="sidebar-subnav-btn" id="nav-inventory-lowstock" onclick="showView('lowstock')">Low stock</button>
+              <button type="button" class="sidebar-subnav-btn" id="nav-inventory-expiry" onclick="showView('expiry')">Expiry</button>
+            </div>
+          </div>
+          <div class="sidebar-menu-group" id="sidebar-group-purchases">
+            <button class="nav-btn nav-parent" id="nav-purchases" onclick="toggleSidebarGroup('purchases')" aria-expanded="false" aria-controls="submenu-purchases"><i class="ti ti-truck"></i><span>Purchases / GRN</span><i class="ti ti-chevron-down sidebar-menu-chevron"></i></button>
+            <div class="sidebar-subnav" id="submenu-purchases">
+              <button type="button" class="sidebar-subnav-btn" id="nav-purchases-grn" onclick="showWorkspaceSection('purchases','grn')">GRN workflow</button>
+              <button type="button" class="sidebar-subnav-btn" id="nav-purchases-suppliers" onclick="showWorkspaceSection('purchases','suppliers')">Suppliers</button>
+              <button type="button" class="sidebar-subnav-btn" id="nav-purchases-history" onclick="showWorkspaceSection('purchases','history')">Purchase history</button>
+              <button type="button" class="sidebar-subnav-btn" id="nav-purchases-overview" onclick="showWorkspaceSection('purchases','overview')">Overview</button>
+            </div>
+          </div>
+          <button class="nav-btn" id="nav-patients" onclick="showView('patients')"><span class="nav-custom-icon nav-custom-customers" aria-hidden="true"></span> Customers</button>
+          <div class="sidebar-menu-group" id="sidebar-group-reports">
+            <button class="nav-btn nav-parent" id="nav-reports" onclick="toggleSidebarGroup('reports')" aria-expanded="false" aria-controls="submenu-reports"><i class="ti ti-chart-bar"></i><span>Reports</span><i class="ti ti-chevron-down sidebar-menu-chevron"></i></button>
+            <div class="sidebar-subnav" id="submenu-reports">
+              <button type="button" class="sidebar-subnav-btn" id="nav-reports-summary" onclick="showView('summary')">Summary</button>
+              <button type="button" class="sidebar-subnav-btn" id="nav-reports-history" onclick="showView('history')">Sales history</button>
+              <button type="button" class="sidebar-subnav-btn" id="nav-reports-shift-log" onclick="showView('shift-log')">Shift log</button>
+            </div>
+          </div>
+          <button class="nav-btn" id="nav-reference" onclick="showView('reference')"><i class="ti ti-book"></i> Drug Reference</button>
+          <div class="sidebar-menu-group" id="sidebar-group-settings">
+            <button class="nav-btn nav-parent" id="nav-settings" onclick="toggleSidebarGroup('settings')" aria-expanded="false" aria-controls="submenu-settings"><i class="ti ti-settings"></i><span>Settings</span><i class="ti ti-chevron-down sidebar-menu-chevron"></i></button>
+            <div class="sidebar-subnav" id="submenu-settings">
+              <button type="button" class="sidebar-subnav-btn" id="nav-settings-profile" onclick="showWorkspaceSection('settings','profile')">Pharmacy profile</button>
+              <button type="button" class="sidebar-subnav-btn" id="nav-settings-users" onclick="showWorkspaceSection('settings','users')">Users</button>
+              <button type="button" class="sidebar-subnav-btn" id="nav-settings-branches" onclick="showWorkspaceSection('settings','branches')">Branches</button>
+              <button type="button" class="sidebar-subnav-btn" id="nav-settings-rules" onclick="showWorkspaceSection('settings','rules')">Operating rules</button>
+              <button type="button" class="sidebar-subnav-btn" id="nav-settings-receipt" onclick="showWorkspaceSection('settings','receipt')">Printer / receipt</button>
+              <button type="button" class="sidebar-subnav-btn" id="nav-settings-shifts" onclick="showWorkspaceSection('settings','shifts')">Shift schedule</button>
+              <button type="button" class="sidebar-subnav-btn" id="nav-settings-lowstock" onclick="showWorkspaceSection('settings','lowstock')">Low-stock overrides</button>
+              <button type="button" class="sidebar-subnav-btn" id="nav-settings-roles" onclick="showWorkspaceSection('settings','roles')">Role permissions</button>
+              <button type="button" class="sidebar-subnav-btn" id="nav-settings-activity" onclick="showWorkspaceSection('settings','activity')">Admin activity</button>
+            </div>
+          </div>
+          <div class="sidebar-menu-group" id="sidebar-group-sync">
+            <button class="nav-btn nav-parent" id="nav-sync" onclick="toggleSidebarGroup('sync')" aria-expanded="false" aria-controls="submenu-sync"><span class="nav-custom-icon nav-custom-sync" aria-hidden="true"></span><span>Sync / Backup</span><i class="ti ti-chevron-down sidebar-menu-chevron"></i></button>
+            <div class="sidebar-subnav" id="submenu-sync">
+              <button type="button" class="sidebar-subnav-btn" id="nav-sync-server" onclick="showWorkspaceSection('sync','server')">Server sync</button>
+              <button type="button" class="sidebar-subnav-btn" id="nav-sync-backup" onclick="showWorkspaceSection('sync','backup')">Backup / restore</button>
+              <button type="button" class="sidebar-subnav-btn" id="nav-sync-status" onclick="showWorkspaceSection('sync','status')">Status snapshot</button>
+            </div>
+          </div>
+        </div>
+        <div class="sidebar-branch-card">
+          <span>Current Branch</span>
+          <div class="sidebar-branch-line"><i class="ti ti-building-store"></i><strong id="sidebarBranchName">Kwame Danso Main</strong></div>
+          <p>Branch Code: <span id="sidebarBranchCode">KD-MAIN</span></p>
+          <p>Pharmacy ID: <span id="sidebarPharmacyId">AK0001</span></p>
+        </div>
+        <div class="sidebar-footer-time">
+          <span><i class="ti ti-calendar"></i> <b id="sidebarDate">06 Jun 2026</b></span>
+          <span class="sidebar-footer-divider"></span>
+          <span id="sidebarTime">10:24 AM</span>
+        </div>
+      </aside>
+
+      <main class="app-main">
+    <!-- Offline warning banner -->
+    <div id="offlineBanner" class="offline-banner is-hidden" role="alert">
+      <i class="ti ti-wifi-off offline-banner-icon"></i>
+      <div class="offline-banner-content">
+        <strong>You are offline</strong>
+        <span>Sales are saved locally and will sync when reconnected. Some operations may be limited.</span>
+      </div>
+      <button type="button" class="offline-banner-dismiss" onclick="document.getElementById('offlineBanner').classList.add('is-hidden')" aria-label="Dismiss offline warning">Dismiss</button>
+    </div>
+    <!-- Expiry alert banner — shown on login if drugs are near/past expiry -->
+    <div id="expiryBanner" class="expiry-banner">
+      <i class="ti ti-alert-triangle expiry-banner-icon"></i>
+      <div class="expiry-banner-content">
+        <div class="expiry-banner-title">Expiry Alert</div>
+        <div id="expiryBannerBody" class="expiry-banner-body"></div>
+      </div>
+      <button class="expiry-banner-dismiss" onclick="document.getElementById('expiryBanner').style.display='none';">
+        Dismiss
+      </button>
+    </div>
+
+    <section id="view-dashboard" class="overlay dashboard-view active">
+      <h1 class="dashboard-title" id="dashboardGreeting">Today</h1>
+      <span id="dashboardBranch" class="dashboard-branch is-hidden">Branch</span>
+
+      <div class="dashboard-stats">
+        <button class="dashboard-stat dashboard-stat-sales" onclick="showView('summary')">
+          <span class="dashboard-stat-icon"><i class="ti ti-chart-bar"></i></span>
+          <span class="dashboard-stat-label">Sales</span>
+          <strong id="dashSalesTotal">GHS 0.00</strong>
+          <span id="dashSalesCount">0 transactions today</span>
+          <svg class="dashboard-sparkline sparkline-green" viewBox="0 0 92 28" aria-hidden="true"><path d="M2 22 C12 11 18 14 25 20 S37 8 45 12 S56 3 64 6 S78 18 90 9"/></svg>
+          <div class="dashboard-stat-progress" id="dashSalesProgress"></div>
+        </button>
+        <button class="dashboard-stat dashboard-stat-profit" onclick="showView('summary')">
+          <span class="dashboard-stat-icon"><i class="ti ti-wallet"></i></span>
+          <span class="dashboard-stat-label">Profit</span>
+          <strong id="dashProfitTotal">GHS 0.00</strong>
+          <span id="dashProfitNote">No sales profit yet</span>
+          <svg class="dashboard-sparkline sparkline-blue" viewBox="0 0 92 28" aria-hidden="true"><path d="M2 20 C10 10 17 19 25 14 S37 7 45 15 S57 5 66 11 S78 20 90 8"/></svg>
+          <div class="dashboard-stat-progress" id="dashProfitProgress"></div>
+        </button>
+        <button class="dashboard-stat dashboard-stat-low" onclick="showLowStockPreview()">
+          <span class="dashboard-stat-icon"><i class="ti ti-package"></i></span>
+          <span class="dashboard-stat-label">Low Stock</span>
+          <strong id="dashLowStockCount">0</strong>
+          <span id="dashLowStock">View products</span>
+          <svg class="dashboard-sparkline sparkline-orange" viewBox="0 0 92 28" aria-hidden="true"><path d="M2 23 C10 22 14 11 23 13 S35 4 44 11 S57 22 67 19 S78 18 90 14"/></svg>
+          <div class="dashboard-stat-progress" id="dashLowProgress"></div>
+        </button>
+        <button class="dashboard-stat dashboard-stat-expiry" onclick="showView('expiry')">
+          <span class="dashboard-stat-icon"><i class="ti ti-calendar-event"></i></span>
+          <span class="dashboard-stat-label">Expiring Soon</span>
+          <strong id="dashExpiryCount">0</strong>
+          <span id="dashExpiryNote">Within 30 days</span>
+          <svg class="dashboard-sparkline sparkline-red" viewBox="0 0 92 28" aria-hidden="true"><path d="M2 23 C15 23 20 23 27 13 S40 7 50 15 S63 23 72 15 S83 18 90 21"/></svg>
+          <div class="dashboard-stat-progress" id="dashExpiryProgress"></div>
+        </button>
+      </div>
+
+      <section class="dashboard-panel dashboard-actions-panel">
+        <div class="section-header">Quick Actions</div>
+        <div class="dashboard-actions">
+        <button class="dashboard-action primary" onclick="showView('pos')">
+          <i class="ti ti-shopping-cart"></i>
+          <span>Start Sale</span>
+        </button>
+        <button class="dashboard-action" onclick="showWorkspaceSection('purchases','grn')">
+          <i class="ti ti-truck"></i>
+          <span>Receive Stock</span>
+        </button>
+        <button class="dashboard-action" onclick="openDrugEditor(null)">
+          <i class="ti ti-plus"></i>
+          <span>Add Product</span>
+        </button>
+        <button class="dashboard-action" onclick="showReportsHome()">
+          <i class="ti ti-chart-bar"></i>
+          <span>View Reports</span>
+        </button>
+        </div>
+      </section>
+
+      <div class="dashboard-lower">
+        <section class="dashboard-panel dashboard-table-panel">
+          <div class="section-header">Recent Activity</div>
+          <div id="dashboardRecentSales" class="dashboard-list"></div>
+        </section>
+        <section class="dashboard-panel dashboard-table-panel">
+          <div class="section-header">Alerts</div>
+          <div id="dashboardAttention" class="dashboard-list"></div>
+        </section>
+      </div>
+
+      <div class="dashboard-footer-strip">
+        <div class="dashboard-footer-item">
+          <i class="ti ti-package"></i>
+          <div><span>Total Products</span><strong id="dashFooterProducts">0</strong></div>
+        </div>
+        <div class="dashboard-footer-item">
+          <i class="ti ti-package"></i>
+          <div><span>Total Stock Value</span><strong id="dashFooterStockValue">GHS 0.00</strong></div>
+        </div>
+        <div class="dashboard-footer-item">
+          <i class="ti ti-users"></i>
+          <div><span>Total Customers</span><strong id="dashFooterCustomers">0</strong></div>
+        </div>
+        <div class="dashboard-footer-item">
+          <i class="ti ti-cash"></i>
+          <div><span>Outstanding Debt</span><strong id="dashFooterDebt">GHS 0.00</strong></div>
+        </div>
+        <button class="dashboard-sync-now" onclick="pullServerSync()"><i class="ti ti-refresh"></i> Sync Now</button>
+      </div>
+
+      <section class="dashboard-panel dashboard-hourly-panel is-hidden">
+        <div class="section-header"><i class="ti ti-chart-line"></i> Hourly Revenue</div>
+        <div class="dashboard-hourly-canvas">
+          <canvas id="dashboardHourlyChart"></canvas>
+          <div class="summary-chart-empty is-hidden" id="dashboardHourlyChartEmpty">No hourly sales yet</div>
+        </div>
+      </section>
+    </section>
+
+    <div class="layout" id="view-pos" style="display:none">
+      <section class="left-panel">
+        <div class="search-row">
+          <div class="search-wrap">
+            <i class="ti ti-search"></i>
+            <input id="searchInput" placeholder="Search drug, category or barcode..." oninput="debouncedFilterDrugs()" />
+          </div>
+          <button class="scan-btn" onclick="showToast('Barcode scanner ready')"><i class="ti ti-barcode"></i> Scan</button>
+        </div>
+
+        <div class="categories" id="catRow"></div>
+
+
+
+        <div class="drug-grid" id="drugGrid"></div>
+      </section>
+
+      <aside class="right-panel">
+        <div class="pos-workflow-tabs panel-card" aria-label="Sale workspace tabs">
+          <button type="button" class="pos-workflow-tab active" id="posCurrentSaleTab" onclick="showView('pos')"><i class="ti ti-receipt"></i> Current Sale</button>
+          <button type="button" class="pos-workflow-tab" id="posHeldSaleTab" onclick="showView('held')"><i class="ti ti-clock-pause"></i> Held Sales <span id="posHeldCount">0</span></button>
+        </div>
+        <div class="cart-top panel-card">
+          <div class="cart-title"><i class="ti ti-shopping-cart"></i> Current Sale</div>
+          <div class="cart-count" id="cartCount">0</div>
+        </div>
+
+        <div class="customer-row panel-card">
+          <i class="ti ti-user"></i>
+          <select id="customerSelect" onchange="selectCustomer(event)">
+            <option value="">Walk-in customer</option>
+          </select>
+          <button class="rx-toggle" onclick="toggleAddCustomer()" id="addCustomerToggle" title="Add new customer"><i class="ti ti-user-plus"></i></button>
+          <button class="rx-toggle" onclick="openSelectedPatientProfile()" id="patientProfileBtn" title="Patient profile"><i class="ti ti-id"></i></button>
+        </div>
+        <div class="customer-row panel-card add-customer-row" id="addCustomerRow">
+          <div class="form-kicker">New customer</div>
+          <div class="inline-fields">
+            <input id="newCustomerName" class="new-customer-name" type="text" placeholder="Full name *" />
+            <input id="newCustomerPhone" class="new-customer-phone" type="tel" placeholder="Phone number" />
+          </div>
+          <div class="form-actions">
+            <button class="hold-btn btn-compact-cancel" onclick="toggleAddCustomer()">Cancel</button>
+            <button class="checkout-btn btn-compact-save" onclick="saveNewCustomer()"><i class="ti ti-check"></i> Save</button>
+          </div>
+        </div>
+        <div class="interaction-alert panel-card is-hidden" id="interactionAlerts"></div>
+
+        <div class="cart-items panel-card" id="cartItems">
+          <div class="empty-cart"><i class="ti ti-pill"></i><div>Tap a drug to add it to the sale</div></div>
+        </div>
+
+        <div class="discount-row panel-card">
+          <label for="discountPct">Discount %</label>
+          <input id="discountPct" class="discount-input" type="number" min="0" max="100" step="0.5" value="0" oninput="updateTotals()" placeholder="0" />
+        </div>
+
+        <div class="discount-row panel-card">
+          <label for="paymentMethod1">Payment</label>
+          <div class="payment-fields">
+            <select id="paymentMethod1" class="payment-method-select" onchange="updateTotals()">
+              <option>Cash</option>
+              <option>MoMo</option>
+              <option>Card</option>
+              <option>NHIS</option>
+            </select>
+            <input id="paymentAmount1" class="payment-amount-input" type="number" min="0" step="0.01" value="0" oninput="updateTotals()" placeholder="Amount" />
+          </div>
+        </div>
+
+        <div class="totals panel-card">
+          <div class="total-row"><span>Subtotal</span><strong id="subTotal">GHS 0.00</strong></div>
+          <div class="total-row discount is-hidden" id="discRow"><span>Discount</span><strong id="discAmt">-GHS 0.00</strong></div>
+          <div class="total-row change is-hidden" id="changeRow"><span>Change</span><strong id="changeAmt">GHS 0.00</strong></div>
+          <div class="total-row grand"><span>Total</span><strong id="grandTotal">GHS 0.00</strong></div>
+          <div style="padding:4px 0 0"><span id="customerBalanceNote" class="customer-balance-note" style="display:none"></span></div>
+        </div>
+
+        <div class="pay-methods panel-card">
+          <button class="pay-method active" onclick="selectPay(this)">Cash</button>
+          <button class="pay-method" onclick="selectPay(this)">MoMo</button>
+          <button class="pay-method" onclick="selectPay(this)">Card</button>
+          <button class="pay-method" onclick="selectPay(this)">NHIS</button>
+        </div>
+
+        <div class="action-row panel-card">
+          <button class="hold-btn" onclick="holdSale()"><i class="ti ti-clock-pause"></i> Hold sale</button>
+          <button class="checkout-btn" id="checkoutBtn" disabled onclick="checkout()"><i class="ti ti-receipt"></i> Process sale</button>
+        </div>
+
+      </aside>
+    </div>
+
+    <section id="view-receipt" class="overlay">
+      <div class="receipt-card">
+        <div class="receipt-header">
+          <div class="receipt-logo"><img src="logo.png" alt="Akopharmah Logo" /></div>
+          <div class="receipt-title">Akopharmah Pharmacy</div>
+          <div class="receipt-sub" id="rcBranch">Accra Central Branch</div>
+          <div class="receipt-sub" id="rcDate"></div>
+          <div class="receipt-sub" id="rcRef"></div>
+          <div class="receipt-sub is-hidden" id="rcCustomer"></div>
+        </div>
+        <div class="receipt-items">
+          <div class="receipt-table-header">
+            <span>Item</span>
+            <span>Qty</span>
+            <span>Price</span>
+          </div>
+          <div id="rcItems"></div>
+        </div>
+        <div class="receipt-row"><span>Subtotal</span><strong id="rcSub">GHS 0.00</strong></div>
+        <div class="receipt-row discount is-hidden" id="rcDiscRow"><span>Discount</span><strong id="rcDisc">-GHS 0.00</strong></div>
+        <div class="receipt-row grand"><span>Total</span><strong id="rcTotal">GHS 0.00</strong></div>
+        <div class="receipt-row"><span>Payment</span><strong id="rcPay">Cash</strong></div>
+        <div class="receipt-footer" id="receiptFooter">
+          Thank you for choosing Akopharmah Pharmacy.<br />Phone: +233248718050 | +233541100007<br />Web: akopharmahcompanylimited.com.gh
+        </div>
+        <div class="receipt-actions">
+          <button onclick="printReceipt()"><i class="ti ti-printer"></i> Print</button>
+          <button onclick="sendToWhatsApp()"><i class="ti ti-brand-whatsapp"></i> WhatsApp</button>
+          <button class="primary" onclick="newSale()"><i class="ti ti-plus"></i> New sale</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-held" class="overlay">
+      <div class="section-header"><i class="ti ti-clock-pause"></i> Held Sales</div>
+      <div class="held-list" id="heldList"></div>
+    </section>
+
+    <section id="view-notifications" class="overlay notification-center-view">
+      <div class="section-header"><i class="ti ti-bell"></i> Notifications</div>
+      <div class="notification-summary-grid" id="notificationSummaryCards"></div>
+      <div class="dashboard-panel notification-feed-panel">
+        <div class="notification-feed-head">
+          <strong>Alert Center</strong>
+          <span id="notificationLastUpdated">Updated now</span>
+        </div>
+        <div id="notificationList" class="notification-feed-list"></div>
+      </div>
+    </section>
+
+    <section id="view-history" class="overlay">
+      <div class="section-header"><i class="ti ti-history"></i> Sales History</div>
+      <div class="ref-controls history-controls">
+        <div class="control-group">
+          <button type="button" class="file-button" onclick="setHistoryFilter('today')">Today</button>
+          <button type="button" class="file-button" onclick="setHistoryFilter('week')">This week</button>
+          <button type="button" class="file-button" onclick="setHistoryFilter('month')">This month</button>
+          <button type="button" class="file-button" onclick="setHistoryFilter('all')">All</button>
+        </div>
+        <div class="control-group">
+          <label class="mini-label">From</label>
+          <input id="historyStart" type="date" onchange="updateHistoryDates()" />
+          <label class="mini-label">To</label>
+          <input id="historyEnd" type="date" onchange="updateHistoryDates()" />
+        </div>
+      </div>
+      <div id="historyList"></div>
+    </section>
+
+    <section id="view-returns" class="overlay">
+      <div class="section-header"><i class="ti ti-receipt-refund"></i> Returns</div>
+      <div class="ref-controls history-controls">
+        <div class="search-wrap">
+          <i class="ti ti-search"></i>
+          <input id="returnsSearch" type="text" placeholder="Search receipt, customer or item..." oninput="renderReturnsView()" />
+        </div>
+        <div class="control-group">
+          <button type="button" class="file-button" id="returnsFilterOpen" onclick="setReturnsFilter('open')">Returnable</button>
+          <button type="button" class="file-button" id="returnsFilterRefunded" onclick="setReturnsFilter('refunded')">Refunds</button>
+          <button type="button" class="file-button" id="returnsFilterAll" onclick="setReturnsFilter('all')">All</button>
+        </div>
+      </div>
+      <div class="summary-grid">
+        <div class="summary-card"><small>Returnable sales</small><h3 id="returnsOpenCount">0</h3><p>Current branch</p></div>
+        <div class="summary-card"><small>Refund records</small><h3 id="returnsRefundCount">0</h3><p>Processed returns</p></div>
+        <div class="summary-card"><small>Refund value</small><h3 id="returnsRefundValue">GHS 0.00</h3><p>Total refunded</p></div>
+      </div>
+      <div id="returnsList"></div>
+    </section>
+
+    <section id="view-patients" class="overlay patient-view">
+      <div class="section-header"><i class="ti ti-users"></i> Patient Profiles</div>
+      <div class="patient-layout">
+        <aside class="patient-sidebar">
+          <div class="patient-create">
+            <div class="form-kicker">New profile</div>
+            <input id="patientNewName" type="text" placeholder="Patient name" />
+            <input id="patientNewPhone" type="tel" placeholder="Phone number" />
+            <input id="patientNewDob" type="date" title="Date of birth" />
+            <button class="checkout-btn full-width-btn" onclick="createPatientProfile()"><i class="ti ti-user-plus"></i> Create profile</button>
+          </div>
+          <div class="search-wrap patient-search">
+            <i class="ti ti-search"></i>
+            <input id="patientSearch" type="text" placeholder="Search patient..." oninput="renderPatientProfiles()" />
+          </div>
+          <div id="patientList" class="patient-list"></div>
+        </aside>
+
+        <main class="patient-main">
+          <div class="patient-profile-head">
+            <div>
+              <div class="form-kicker">Selected patient</div>
+              <h2 id="patientProfileName">No patient selected</h2>
+              <p id="patientProfileMeta">Create or select a patient profile.</p>
+            </div>
+            <button class="checkout-btn patient-sale-btn" onclick="startSaleForPatient()"><i class="ti ti-shopping-cart"></i> Start sale</button>
+          </div>
+
+          <div class="patient-stats">
+            <div><small>Previous purchases</small><strong id="patientPurchaseCount">0</strong></div>
+            <div><small>Total spent</small><strong id="patientTotalSpent">GHS 0.00</strong></div>
+            <div><small>Last visit</small><strong id="patientLastVisit">--</strong></div>
+            <div><small>Age</small><strong id="patientAge">--</strong></div>
+            <div><small>Next refill due</small><strong id="patientNextRefill">--</strong></div>
+          </div>
+
+          <div class="patient-profile-grid">
+            <section class="patient-panel" data-subsection="profile">
+              <div class="section-header"><i class="ti ti-notes"></i> Medical Profile</div>
+              <div class="admin-form patient-form">
+                <div class="field"><label for="patientDob">Date of birth</label><input id="patientDob" type="date" /></div>
+                <div class="field"><label for="patientHomeBranch">Home branch</label><select id="patientHomeBranch"></select></div>
+                <div class="field"><label for="patientAllergies">Allergies</label><input id="patientAllergies" type="text" placeholder="No known allergy" /></div>
+                <div class="field"><label for="patientConditions">Conditions</label><input id="patientConditions" type="text" placeholder="Hypertension, diabetes..." /></div>
+                <div class="field full"><label for="patientMedications">Current medicines</label><input id="patientMedications" type="text" placeholder="Medicines patient is already taking" /></div>
+                <div class="field full"><label for="patientNotes">Clinical notes</label><textarea id="patientNotes" rows="3" placeholder="Important counselling or follow-up notes"></textarea></div>
+                <div class="field full"><button class="checkout-btn full-width-btn" onclick="savePatientProfile()"><i class="ti ti-device-floppy"></i> Save profile</button></div>
+              </div>
+            </section>
+
+            <section class="patient-panel" data-subsection="record-new">
+              <div class="section-header"><i class="ti ti-clipboard-heart"></i> Add Medical Record</div>
+              <div class="admin-form patient-form">
+                <div class="field"><label for="patientRecordType">Record type</label><select id="patientRecordType"><option>Consultation</option><option>Prescription</option><option>Allergy note</option><option>Counselling</option><option>Follow-up</option></select></div>
+                <div class="field"><label for="patientRecordDate">Record date</label><input id="patientRecordDate" type="date" /></div>
+                <div class="field full"><label for="patientRecordNote">Record details</label><textarea id="patientRecordNote" rows="4" placeholder="Enter medical record details"></textarea></div>
+                <div class="field full"><button class="file-button full-width-btn" onclick="addPatientMedicalRecord()"><i class="ti ti-plus"></i> Add record</button></div>
+              </div>
+            </section>
+          </div>
+
+          <div class="patient-profile-grid">
+            <section class="patient-panel" data-subsection="purchases">
+              <div class="section-header"><i class="ti ti-receipt"></i> Previous Purchases</div>
+              <div id="patientPurchaseHistory" class="dashboard-list"></div>
+            </section>
+            <section class="patient-panel" data-subsection="medicines">
+              <div class="section-header"><i class="ti ti-pill"></i> Medicine History</div>
+              <div id="patientMedicineHistory" class="dashboard-list"></div>
+            </section>
+          </div>
+
+          <section class="patient-panel" data-subsection="records">
+            <div class="section-header"><i class="ti ti-file-heart"></i> Medical Records</div>
+            <div id="patientMedicalRecords" class="dashboard-list"></div>
+          </section>
+        </main>
+      </div>
+    </section>
+
+    <section id="view-summary" class="overlay">
+      <div class="summary-heading">
+        <div class="section-header"><i class="ti ti-chart-bar"></i> Summary <span id="sumDate" class="summary-date"></span></div>
+        <div class="summary-actions">
+          <button class="file-button" onclick="printEndOfDayReport()"><i class="ti ti-file-type-pdf"></i> End-of-day PDF</button>
+          <button class="file-button" onclick="printEndOfShiftReport()"><i class="ti ti-file-type-pdf"></i> End-of-shift PDF</button>
+        </div>
+      </div>
+      <div class="ref-controls history-controls summary-period-controls">
+        <div class="control-group">
+          <button type="button" class="file-button" id="summaryFilter-today" onclick="setSummaryFilter('today')">Today</button>
+          <button type="button" class="file-button" id="summaryFilter-yesterday" onclick="setSummaryFilter('yesterday')">Yesterday</button>
+          <button type="button" class="file-button" id="summaryFilter-week" onclick="setSummaryFilter('week')">This week</button>
+          <button type="button" class="file-button" id="summaryFilter-month" onclick="setSummaryFilter('month')">This month</button>
+          <button type="button" class="file-button" id="summaryFilter-all" onclick="setSummaryFilter('all')">All</button>
+        </div>
+        <div class="control-group">
+          <label class="mini-label">From</label>
+          <input id="summaryStart" type="date" onchange="updateSummaryDates()" />
+          <label class="mini-label">To</label>
+          <input id="summaryEnd" type="date" onchange="updateSummaryDates()" />
+        </div>
+      </div>
+      <div class="summary-grid">
+        <div class="summary-card"><small>Revenue</small><h3 id="sumRev">GHS 0</h3><p id="sumRevSub">0 transactions</p></div>
+        <div class="summary-card"><small>Transactions</small><h3 id="sumTx">0</h3><p id="sumTxSub">Selected period</p></div>
+        <div class="summary-card"><small>Items sold</small><h3 id="sumItems">0</h3><p>Across all categories</p></div>
+        <div class="summary-card"><small>Top payment</small><h3 id="sumPay">Cash</h3><p id="sumPaySub">No sales yet</p></div>
+        <div class="summary-card"><small>Your hours</small><h3 id="sumWorkerHours">0h 00m</h3><p id="sumWorkerHoursSub">Selected period</p></div>
+        <div class="summary-card"><small>Low stock alerts</small><h3 id="sumLow">0</h3><p id="sumLowSub">Review medications</p></div>
+      </div>
+
+      <div class="summary-chart-card">
+        <div class="summary-chart-top">
+          <div>
+            <div class="bar-chart-title" id="summaryChartTitle">Hourly revenue (GHS)</div>
+            <div class="summary-chart-subtitle" id="summaryChartSubtitle">Accurate Chart.js scale with hover tooltips</div>
+          </div>
+          <div class="summary-chart-controls">
+            <div class="chart-switch" aria-label="Chart data">
+              <button id="chartMetric-hourly" class="active" onclick="setSummaryChartMetric('hourly')">Hourly</button>
+              <button id="chartMetric-payments" onclick="setSummaryChartMetric('payments')">Payments</button>
+              <button id="chartMetric-categories" onclick="setSummaryChartMetric('categories')">Categories</button>
+            </div>
+            <div class="chart-switch" aria-label="Chart type">
+              <button id="chartType-bar" class="active" onclick="setSummaryChartType('bar')"><i class="ti ti-chart-bar"></i> Bar</button>
+              <button id="chartType-line" onclick="setSummaryChartType('line')"><i class="ti ti-chart-line"></i> Line</button>
+              <button id="chartType-pie" onclick="setSummaryChartType('pie')"><i class="ti ti-chart-pie"></i> Pie</button>
+            </div>
+          </div>
+        </div>
+        <div class="summary-chart-canvas">
+          <canvas id="summaryChart"></canvas>
+          <div class="summary-chart-empty is-hidden" id="summaryChartEmpty">No chart data yet</div>
+        </div>
+      </div>
+
+      <div class="summary-card">
+        <div class="section-header"><i class="ti ti-palette"></i> Top selling drugs</div>
+        <div id="topDrugsList" class="mt-14"></div>
+      </div>
+
+      <div class="summary-analysis-grid">
+        <div class="summary-mini-chart-card">
+          <div class="summary-mini-chart-head">
+            <div>
+              <div class="bar-chart-title"><i class="ti ti-clock"></i> Worker hours</div>
+              <div class="summary-chart-subtitle">Shift time by worker for the selected period</div>
+            </div>
+          </div>
+          <div class="summary-mini-chart-canvas">
+            <canvas id="workerHoursChart"></canvas>
+            <div class="summary-chart-empty is-hidden" id="workerHoursChartEmpty">No worker hours recorded yet</div>
+          </div>
+        </div>
+
+        <div class="summary-mini-chart-card">
+          <div class="summary-mini-chart-head">
+            <div>
+              <div class="bar-chart-title"><i class="ti ti-tag"></i> Sales by category</div>
+              <div class="summary-chart-subtitle">Revenue split across medicine categories</div>
+            </div>
+          </div>
+          <div class="summary-mini-chart-canvas">
+            <canvas id="categoryBreakdownChart"></canvas>
+            <div class="summary-chart-empty is-hidden" id="categoryBreakdownChartEmpty">No category sales yet</div>
+          </div>
+        </div>
+
+        <div class="summary-mini-chart-card">
+          <div class="summary-mini-chart-head">
+            <div>
+              <div class="bar-chart-title"><i class="ti ti-building-bank"></i> Branch comparison</div>
+              <div class="summary-chart-subtitle">Revenue by branch for the selected period</div>
+            </div>
+          </div>
+          <div class="summary-mini-chart-canvas">
+            <canvas id="branchComparisonChart"></canvas>
+            <div class="summary-chart-empty is-hidden" id="branchComparisonChartEmpty">No branch activity yet</div>
+          </div>
+        </div>
+
+        <div class="summary-mini-chart-card">
+          <div class="summary-mini-chart-head">
+            <div>
+              <div class="bar-chart-title"><i class="ti ti-wallet"></i> Payments & expected cash</div>
+              <div class="summary-chart-subtitle">Payment method totals and cash to count</div>
+            </div>
+            <div class="summary-mini-total"><span>Expected cash</span><strong id="expectedCashTotal">GHS 0.00</strong></div>
+          </div>
+          <div class="summary-mini-chart-canvas">
+            <canvas id="paymentBreakdownChart"></canvas>
+            <div class="summary-chart-empty is-hidden" id="paymentBreakdownChartEmpty">No payments recorded yet</div>
+          </div>
+        </div>
+
+        <div class="summary-mini-chart-card summary-mini-chart-wide">
+          <div class="summary-mini-chart-head">
+            <div>
+              <div class="bar-chart-title"><i class="ti ti-user-check"></i> Worker sales performance</div>
+              <div class="summary-chart-subtitle">Revenue and transactions by staff member</div>
+            </div>
+          </div>
+          <div class="summary-mini-chart-canvas">
+            <canvas id="workerPerformanceChart"></canvas>
+            <div class="summary-chart-empty is-hidden" id="workerPerformanceChartEmpty">No worker sales yet</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-shift-log" class="overlay">
+      <div class="section-header"><i class="ti ti-clock"></i> Shift Log</div>
+      <div class="summary-card mb-16">
+        <div id="shiftLogHeader" class="muted-text">Shift hours for today</div>
+      </div>
+      <div id="shiftLogList"></div>
+    </section>
+
+    <section id="view-reference" class="overlay">
+      <div class="section-header"><i class="ti ti-book"></i> Drug Reference</div>
+      <div class="panel-card admin-form-panel reference-editor-panel">
+        <div class="section-header reference-editor-heading"><i class="ti ti-book-upload"></i> Add or Edit Reference</div>
+        <div class="admin-form reference-entry-form">
+          <div class="field"><label for="referenceGeneric">Generic name</label><input id="referenceGeneric" type="text" /></div>
+          <div class="field"><label for="referenceBrand">Brand name(s)</label><input id="referenceBrand" type="text" /></div>
+          <div class="field"><label for="referenceDose">Dose strength</label><input id="referenceDose" type="text" placeholder="e.g. 500 mg" /></div>
+          <div class="field"><label for="referenceForm">Dosage form</label><input id="referenceForm" type="text" placeholder="e.g. Tablet" /></div>
+          <div class="field full"><label for="referenceCategory">Category</label><input id="referenceCategory" type="text" list="referenceCategoryList" /></div>
+          <datalist id="referenceCategoryList"></datalist>
+          <div class="field full reference-editor-actions">
+            <button type="button" class="file-button" onclick="clearReferenceEditor()"><i class="ti ti-x"></i> Clear</button>
+            <button type="button" class="checkout-btn" id="referenceSaveBtn" onclick="saveReferenceEntry()"><i class="ti ti-device-floppy"></i> Add reference</button>
+          </div>
+        </div>
+      </div>
+      <div class="ref-controls">
+        <div class="search-wrap">
+          <i class="ti ti-search"></i>
+          <input id="referenceSearch" type="text" placeholder="Search generic, brand, dose, form, category..." />
+        </div>
+        <select id="referenceCat">
+          <option value="">All Categories</option>
+          <option value="Antimalarials">Antimalarials</option>
+          <option value="Antibiotics">Antibiotics</option>
+          <option value="Analgesics">Analgesics &amp; Antipyretics</option>
+          <option value="Antihypertensives">Antihypertensives</option>
+          <option value="Antidiabetics">Antidiabetics</option>
+          <option value="GI">GI Medications</option>
+          <option value="Vitamins">Vitamins &amp; Supplements</option>
+          <option value="Antifungals">Antifungals</option>
+          <option value="ARVs">ARVs</option>
+          <option value="OTC">OTC &amp; Topical</option>
+        </select>
+        <div class="count-badge">Showing <span id="referenceCount">0</span> drugs</div>
+      </div>
+      <div class="table-wrap">
+        <table id="referenceTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th data-col="0">Generic Name</th>
+              <th data-col="1">Brand Name(s)</th>
+              <th data-col="2">Dose Strength</th>
+              <th data-col="3">Dosage Form</th>
+              <th data-col="4">Category</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="referenceBody"></tbody>
+        </table>
+        <div class="no-results is-hidden" id="noResultsRef"><big></big>No drugs match your search.</div>
+      </div>
+    </section>
+
+    <section id="view-settings" class="overlay settings-view">
+      <div class="section-header"><i class="ti ti-settings"></i> Settings</div>
+      <div class="settings-grid">
+        <section class="dashboard-panel settings-card" data-subsection="profile">
+          <div class="settings-card-head">
+            <i class="ti ti-building-store"></i>
+            <div><strong>Pharmacy Profile</strong><span id="settingsProfileBranch">Current branch</span></div>
+          </div>
+          <div class="admin-form settings-form">
+            <div class="field"><label for="settingsPharmacyName">Display name</label><input id="settingsPharmacyName" type="text" /></div>
+            <div class="field"><label for="settingsPharmacyPhone">Phone</label><input id="settingsPharmacyPhone" type="text" /></div>
+            <div class="field full"><label for="settingsReceiptFooter">Receipt footer lines</label><textarea id="settingsReceiptFooter" rows="3"></textarea></div>
+            <div class="field full"><button class="checkout-btn full-width-btn" onclick="saveAdminSettings()"><i class="ti ti-check"></i> Save settings</button></div>
+          </div>
+          <div class="settings-card-head" style="margin-top:1rem;border-top:1px solid var(--border-color);padding-top:1rem;">
+            <i class="ti ti-lock"></i>
+            <div><strong>Change My Password</strong><span>Update your own sign-in password</span></div>
+          </div>
+          <div class="admin-form settings-form" id="changePasswordForm">
+            <div class="field full"><label for="settingsCurrentPassword">Current password</label><input id="settingsCurrentPassword" type="password" autocomplete="current-password" placeholder="Current password" /></div>
+            <div class="field"><label for="settingsNewPassword">New password (10+ chars)</label><input id="settingsNewPassword" type="password" autocomplete="new-password" minlength="10" placeholder="New password" /></div>
+            <div class="field"><label for="settingsConfirmPassword">Confirm new password</label><input id="settingsConfirmPassword" type="password" autocomplete="new-password" minlength="10" placeholder="Confirm new password" /></div>
+            <div class="field full" id="changePasswordError" style="color:var(--danger-color);font-size:.85rem;display:none;"></div>
+            <div class="field full"><button class="checkout-btn full-width-btn" onclick="changePassword()"><i class="ti ti-key"></i> Change password</button></div>
+          </div>
+        </section>
+        <section class="dashboard-panel settings-card" data-subsection="users">
+          <div class="settings-card-head">
+            <i class="ti ti-shield"></i>
+            <div><strong>Users</strong><span id="settingsCurrentUser">Signed-in user</span></div>
+          </div>
+          <div class="admin-form settings-form">
+            <div class="field"><label for="settingsUserUsername">Username</label><input id="settingsUserUsername" type="text" /></div>
+            <div class="field"><label for="settingsUserName">Name</label><input id="settingsUserName" type="text" /></div>
+            <div class="field"><label for="settingsUserPassword">Password (10+ characters)</label><input id="settingsUserPassword" type="password" minlength="10" maxlength="72" autocomplete="new-password" /></div>
+            <div class="field"><label for="settingsUserRole">Role</label><select id="settingsUserRole"><option value="cashier">Cashier</option><option value="worker">Worker</option><option value="pharmacist">Pharmacist</option><option value="manager">Manager</option><option value="director">Director</option></select></div>
+            <div class="field"><label for="settingsUserBranch">Default branch</label><select id="settingsUserBranch"></select></div>
+            <div class="field full"><label>Allowed branches</label><div id="settingsUserBranches" class="branch-checkbox-list"></div></div>
+            <div class="field full settings-inline-actions">
+              <button class="checkout-btn" onclick="saveUserFromSettings()"><i class="ti ti-device-floppy"></i> Save user</button>
+              <button class="file-button" onclick="clearUserEditor()"><i class="ti ti-plus"></i> New</button>
+              <button class="hold-btn" onclick="deleteSelectedUser()"><i class="ti ti-trash"></i> Delete</button>
+            </div>
+          </div>
+          <div class="settings-list" id="settingsUsersList"></div>
+        </section>
+        <section class="dashboard-panel settings-card" data-subsection="branches">
+          <div class="settings-card-head">
+            <i class="ti ti-building-bank"></i>
+            <div><strong>Branches</strong><span id="settingsBranchAccess">Assigned branches</span></div>
+          </div>
+          <div class="admin-form settings-form">
+            <div class="field"><label for="settingsBranchId">Branch ID</label><input id="settingsBranchId" type="text" /></div>
+            <div class="field"><label for="settingsBranchName">Branch name</label><input id="settingsBranchName" type="text" /></div>
+            <div class="field full settings-inline-actions">
+              <button class="checkout-btn" onclick="saveBranchFromSettings()"><i class="ti ti-device-floppy"></i> Save branch</button>
+              <button class="file-button" onclick="clearBranchEditor()"><i class="ti ti-plus"></i> New</button>
+              <button class="hold-btn" onclick="deleteSelectedBranch()"><i class="ti ti-trash"></i> Delete</button>
+            </div>
+          </div>
+          <div class="settings-list" id="settingsBranchesList"></div>
+        </section>
+        <section class="dashboard-panel settings-card" data-subsection="rules">
+          <div class="settings-card-head">
+            <i class="ti ti-list-check"></i>
+            <div><strong>Operating Rules</strong><span>Inventory and security defaults</span></div>
+          </div>
+          <div class="admin-form settings-form">
+            <div class="field"><label for="settingsLowStockDefault">Default reorder level</label><input id="settingsLowStockDefault" type="number" min="1" step="1" /></div>
+            <div class="field"><label for="settingsBackupCadence">Backup reminder days</label><input id="settingsBackupCadence" type="number" min="1" step="1" /></div>
+            <div class="field"><label for="settingsInactivityMinutes">Inactivity timeout minutes</label><input id="settingsInactivityMinutes" type="number" min="1" step="1" /></div>
+            <div class="field"><label for="settingsDataRetentionMonths">Sales retention months</label><input id="settingsDataRetentionMonths" type="number" min="0" step="1" /></div>
+            <div class="field full"><label><input id="settingsAutoBackupEnabled" type="checkbox" /> Save automatic local backup snapshots</label></div>
+            <div class="field full"><button class="file-button full-width-btn" onclick="saveOperationalSettings()"><i class="ti ti-check"></i> Save rules</button></div>
+          </div>
+        </section>
+      </div>
+      <div class="settings-grid mt-16">
+        <section class="dashboard-panel settings-card" data-subsection="receipt">
+          <div class="settings-card-head">
+            <i class="ti ti-printer"></i>
+            <div><strong>Printer & Receipt</strong><span>Paper, logo and receipt fields</span></div>
+          </div>
+          <div class="admin-form settings-form">
+            <div class="field"><label for="settingsPrinterType">Printer type</label><select id="settingsPrinterType"><option value="browser">Browser print dialog</option><option value="thermal">Thermal receipt printer</option></select></div>
+            <div class="field"><label for="settingsPaperWidth">Paper width</label><select id="settingsPaperWidth"><option value="80">80mm</option><option value="58">58mm</option></select></div>
+            <div class="field full"><label for="settingsLogoUpload">Receipt logo</label><input id="settingsLogoUpload" type="file" accept="image/*" onchange="handleReceiptLogoUpload(event)" /></div>
+            <div class="field full settings-checkbox-grid">
+              <label><input id="settingsReceiptShowLogo" type="checkbox" /> Show logo</label>
+              <label><input id="settingsReceiptShowBranch" type="checkbox" /> Show branch</label>
+              <label><input id="settingsReceiptShowCustomer" type="checkbox" /> Show customer</label>
+            </div>
+            <div class="field full"><button class="file-button full-width-btn" onclick="saveReceiptSettings()"><i class="ti ti-check"></i> Save receipt settings</button></div>
+          </div>
+        </section>
+        <section class="dashboard-panel settings-card" data-subsection="shifts">
+          <div class="settings-card-head">
+            <i class="ti ti-clock"></i>
+            <div><strong>Shift Schedule</strong><span>Editable work periods</span></div>
+          </div>
+          <div class="admin-form settings-form">
+            <div class="field"><label for="settingsMorningStart">Morning start</label><input id="settingsMorningStart" type="time" /></div>
+            <div class="field"><label for="settingsMorningEnd">Morning end</label><input id="settingsMorningEnd" type="time" /></div>
+            <div class="field"><label for="settingsAfternoonStart">Afternoon start</label><input id="settingsAfternoonStart" type="time" /></div>
+            <div class="field"><label for="settingsAfternoonEnd">Afternoon end</label><input id="settingsAfternoonEnd" type="time" /></div>
+            <div class="field full"><button class="file-button full-width-btn" onclick="saveShiftScheduleSettings()"><i class="ti ti-check"></i> Save shift schedule</button></div>
+          </div>
+        </section>
+        <section class="dashboard-panel settings-card" data-subsection="lowstock">
+          <div class="settings-card-head">
+            <i class="ti ti-alert-circle"></i>
+            <div><strong>Category Low Stock</strong><span>Override notification thresholds</span></div>
+          </div>
+          <div id="settingsCategoryThresholds" class="settings-list settings-threshold-list"></div>
+          <button class="file-button full-width-btn mt-10" onclick="saveCategoryThresholdSettings()"><i class="ti ti-check"></i> Save category thresholds</button>
+        </section>
+        <section class="dashboard-panel settings-card" data-subsection="roles">
+          <div class="settings-card-head">
+            <i class="ti ti-lock-access"></i>
+            <div><strong>Role Permissions</strong><span>Toggle allowed actions</span></div>
+          </div>
+          <div id="rolePermissionsEditor" class="role-permissions-editor"></div>
+          <button id="saveRolePermissionsButton" class="file-button full-width-btn mt-10" onclick="saveRolePermissionsSettings()"><i class="ti ti-lock"></i> Director access required</button>
+        </section>
+      </div>
+      <section class="dashboard-panel settings-card settings-wide" data-subsection="activity">
+        <div class="settings-card-head">
+          <i class="ti ti-list-check"></i>
+          <div><strong>Recent Admin Activity</strong><span id="settingsAuditCount">0 records</span></div>
+        </div>
+        <div class="settings-list" id="settingsAuditPreview"></div>
+      </section>
+    </section>
+
+    <section id="view-sync" class="overlay sync-backup-view">
+      <div class="section-header"><i class="ti ti-cloud-upload"></i> Sync / Backup</div>
+      <div class="sync-backup-grid">
+        <section class="dashboard-panel sync-backup-card" data-subsection="server">
+          <div class="settings-card-head">
+            <i class="ti ti-cloud"></i>
+            <div><strong>Branch Sync Server</strong><span id="syncPageStatusText">Browser storage only</span></div>
+          </div>
+          <div class="sync-page-controls">
+            <input id="syncApiBaseInput" type="text" placeholder="http://localhost:3000 or /api" onkeydown="if(event.key==='Enter')saveSyncServerUrl()" />
+            <button class="file-button" onclick="saveSyncServerUrl()"><i class="ti ti-check"></i> Save</button>
+            <button class="file-button" onclick="testServerSync()"><i class="ti ti-plug-connected"></i> Test</button>
+          </div>
+          <div class="sync-action-grid">
+            <button class="dashboard-action" onclick="pullServerSync()"><i class="ti ti-cloud-down"></i><span>Pull Data</span></button>
+            <button class="dashboard-action" onclick="pushLocalDataToServer()"><i class="ti ti-cloud-up"></i><span>Push Data</span></button>
+          </div>
+        </section>
+        <section class="dashboard-panel sync-backup-card" data-subsection="backup">
+          <div class="settings-card-head">
+            <i class="ti ti-database"></i>
+            <div><strong>Backup Files</strong><span id="syncBackupSummary">Local backup status</span></div>
+          </div>
+          <div class="sync-action-grid">
+            <button class="dashboard-action primary" onclick="exportFullBackup()"><i class="ti ti-download"></i><span>Full Backup</span></button>
+            <button class="dashboard-action" onclick="document.getElementById('importDataFile').click()"><i class="ti ti-upload"></i><span>Restore Data</span></button>
+            <button class="dashboard-action" onclick="exportInventory()"><i class="ti ti-package"></i><span>Inventory JSON</span></button>
+            <button class="dashboard-action" onclick="exportSalesHistory()"><i class="ti ti-chart-bar"></i><span>Sales JSON</span></button>
+          </div>
+        </section>
+      </div>
+      <section class="dashboard-panel sync-backup-card" data-subsection="status">
+        <div class="settings-card-head">
+          <i class="ti ti-chart-line"></i>
+          <div><strong>Sync Snapshot</strong><span id="syncSnapshotTime">Updated now</span></div>
+        </div>
+        <div class="sync-snapshot-grid" id="syncSnapshotGrid"></div>
+      </section>
+    </section>
+
+    <section id="view-admin" class="overlay">
+      <div class="view-subsection" data-subsection="list">
+      <div class="section-header"><i class="ti ti-tools"></i> Inventory Manager</div>
+      <!-- Hidden file inputs for data utilities -->
+      <input id="importInventoryFile" type="file" accept="application/json" class="hidden" onchange="importInventory(event)" />
+      <input id="importDataFile" type="file" accept="application/json" class="hidden" onchange="importData(event)" />
+      <input id="importSalesFile" type="file" accept="application/json" class="hidden" onchange="importSalesHistory(event)" />
+      <div class="ref-controls inventory-controls">
+        <div class="inventory-tabs">
+          <button class="checkout-btn inventory-add-btn" onclick="openDrugEditor(null)"><i class="ti ti-plus"></i> Add new drug</button>
+          <button class="file-button-sm inventory-tab active" id="inventoryTabAll" onclick="setInventoryViewMode('all')"><i class="ti ti-list"></i> All</button>
+          <button class="file-button-sm inventory-tab" id="inventoryTabLow" onclick="setInventoryViewMode('low')"><i class="ti ti-alert-circle"></i> Low-stock <span id="lowStockBadge" class="low-badge">0</span></button>
+          <button class="file-button-sm" id="nav-expiry" onclick="showView('expiry')"><i class="ti ti-calendar-x"></i> Expiry <span id="expiryBadge" class="low-badge">0</span></button>
+
+          <!-- Data utilities dropdown -->
+          <div class="data-util-wrap" id="dataUtilWrap">
+            <button class="file-button-sm data-util-trigger" onclick="toggleDataUtil()">
+              <i class="ti ti-database"></i> Data <i class="ti ti-chevron-down data-util-chevron" id="dataUtilChevron"></i>
+            </button>
+            <div id="dataUtilMenu" class="data-util-menu">
+              <button class="file-button data-util-menu-item" onclick="exportInventory();closeDataUtil()"><i class="ti ti-download"></i> Export inventory</button>
+              <button class="file-button data-util-menu-item" onclick="document.getElementById('importInventoryFile').click();closeDataUtil()"><i class="ti ti-upload"></i> Import inventory</button>
+              <button class="file-button data-util-menu-item" onclick="exportFullBackup();closeDataUtil()"><i class="ti ti-download"></i> Full backup</button>
+              <button class="file-button data-util-menu-item" onclick="document.getElementById('importDataFile').click();closeDataUtil()"><i class="ti ti-upload"></i> Import all data</button>
+              <button class="file-button data-util-menu-item" onclick="exportSalesHistory();closeDataUtil()"><i class="ti ti-download"></i> Export sales history</button>
+              <button class="file-button data-util-menu-item" onclick="showLowStockPreview();closeDataUtil()"><i class="ti ti-alert-circle"></i> Low-stock list</button>
+              <button class="file-button data-util-menu-item" onclick="printLowStock();closeDataUtil()"><i class="ti ti-printer"></i> Print low stock</button>
+              <button class="file-button data-util-menu-item" onclick="exportLowStockExcel();closeDataUtil()"><i class="ti ti-file-spreadsheet"></i> Export low stock Excel</button>
+              <button class="file-button data-util-menu-item-last" onclick="document.getElementById('importSalesFile').click();closeDataUtil()"><i class="ti ti-upload"></i> Import sales history</button>
+            </div>
+          </div>
+        </div>
+        <div class="inventory-search-row">
+          <div class="search-wrap">
+            <i class="ti ti-search"></i>
+            <input id="inventorySearch" type="text" placeholder="Filter drugs by name, route, location or category..." oninput="renderInventoryAdmin()" />
+          </div>
+        </div>
+      </div>
+      <div class="table-wrap inventory-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Drug name</th>
+              <th>Strength / form</th>
+              <th>Route</th>
+              <th>Batch lots</th>
+              <th>Price</th>
+              <th>Stock</th>
+              <th>Reorder min</th>
+              <th>Rx</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="inventoryRows"></tbody>
+        </table>
+        <div class="no-results is-hidden" id="noResultsInventory"><big></big>No inventory results found.</div>
+      </div>
+      </div>
+
+      <!-- Collapsible: Audit Log -->
+      <div class="mt-16 view-subsection" data-subsection="audit">
+        <div class="collapsible-toggle" onclick="toggleCollapsible('auditLogBody', this)">
+          <span><i class="ti ti-list-check"></i> &nbsp;Recent Audit Log</span>
+          <i class="ti ti-chevron-down toggle-chevron"></i>
+        </div>
+        <div class="collapsible-body" id="auditLogBody">
+          <div class="panel-card popup-panel">
+            <div class="popup-heading">
+              <span><i class="ti ti-list-check"></i> Recent Audit Log</span>
+              <button type="button" onclick="closeCollapsibleModal('auditLogBody')" title="Close"><i class="ti ti-x"></i></button>
+            </div>
+            <div class="held-list admin-sublist" id="auditLogList"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Collapsible: Branch Stock Transfer -->
+      <div class="mt-10 view-subsection" data-subsection="transfer">
+        <div class="collapsible-toggle" onclick="toggleCollapsible('transferBody', this)">
+          <span><i class="ti ti-arrows-exchange"></i> &nbsp;Branch Stock Transfer</span>
+          <i class="ti ti-chevron-down toggle-chevron"></i>
+        </div>
+        <div class="collapsible-body" id="transferBody">
+          <div class="panel-card admin-form-panel transfer-panel mt-4">
+            <div class="popup-heading">
+              <span><i class="ti ti-arrows-exchange"></i> Branch Stock Transfer</span>
+              <button type="button" onclick="closeCollapsibleModal('transferBody')" title="Close"><i class="ti ti-x"></i></button>
+            </div>
+            <div class="admin-form">
+              <div class="field full"><label for="transferDrug">Drug</label><select id="transferDrug" onchange="updateTransferPreview()"></select></div>
+              <div class="field"><label for="transferFromBranch">From branch</label><select id="transferFromBranch" onchange="updateTransferPreview()"></select></div>
+              <div class="field"><label for="transferToBranch">To branch</label><select id="transferToBranch" onchange="updateTransferPreview()"></select></div>
+              <div class="field"><label for="transferQty">Quantity</label><input id="transferQty" type="number" min="1" step="1" value="1" oninput="updateTransferPreview()" /></div>
+              <div class="field transfer-preview">
+                <div id="transferFromStock">Source stock: --</div>
+                <div id="transferToStock">Destination stock: --</div>
+              </div>
+              <div class="field full"><button class="checkout-btn full-width-btn" onclick="submitStockTransfer()"><i class="ti ti-transfer"></i> Transfer stock</button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Collapsible: Drug Editor -->
+      <div class="editor-section-spacing view-subsection" data-subsection="editor">
+        <div class="collapsible-toggle" id="drugEditorToggle" onclick="toggleCollapsible('drugEditorBody', this)">
+          <span><i class="ti ti-edit"></i> &nbsp;Drug Editor</span>
+          <i class="ti ti-chevron-down toggle-chevron"></i>
+        </div>
+        <div class="collapsible-body" id="drugEditorBody">
+          <div class="panel-card admin-form-panel mt-4 drug-editor-panel">
+            <div class="popup-heading drug-editor-heading">
+              <span><i class="ti ti-edit"></i> Product Editor</span>
+              <button type="button" onclick="closeCollapsibleModal('drugEditorBody','drugEditorToggle')" title="Close"><i class="ti ti-x"></i></button>
+            </div>
+            <div class="admin-form drug-editor-form">
+          <div class="field full drug-editor-section-label">Medicine details</div>
+          <div class="field"><label for="drugName">Drug name</label><input id="drugName" type="text" /></div>
+          <div class="field"><label for="drugDose">Dose strength</label><input id="drugDose" type="text" /></div>
+          <div class="field"><label for="drugForm">Dosage form</label><select id="drugForm">
+            <option value="">Select form</option>
+            <option>Tablet</option>
+            <option>Capsule</option>
+            <option>Syrup</option>
+            <option>Suspension</option>
+            <option>Injection</option>
+            <option>Cream</option>
+            <option>Ointment</option>
+            <option>Drops</option>
+            <option>Inhaler</option>
+            <option>Solution</option>
+            <option>Sachet</option>
+            <option>Powder</option>
+            <option>Suppository</option>
+            <option>Pessary</option>
+            <option>Topical</option>
+            <option>Other</option>
+          </select></div>
+          <div class="field"><label for="drugSaleUnit">Sold as</label><select id="drugSaleUnit" onchange="updateDrugOpeningQtyLabel()">
+            <option>Unit</option>
+            <option>Piece</option>
+            <option>Tablet</option>
+            <option>Capsule</option>
+            <option>Strip</option>
+            <option>Blister pack</option>
+            <option>Bottle</option>
+            <option>Vial</option>
+            <option>Ampoule</option>
+            <option>Tube</option>
+            <option>Sachet</option>
+            <option>Inhaler</option>
+            <option>Box</option>
+            <option>Pack</option>
+            <option>Jar</option>
+            <option>Kit</option>
+            <option>Pair</option>
+            <option>Roll</option>
+            <option>Dose</option>
+            <option>Other</option>
+          </select></div>
+          <div class="field"><label for="drugCat">Category</label><select id="drugCat">
+            <option value="">Select category</option>
+            <option>Analgesics</option>
+            <option>Antibiotics</option>
+            <option>Antimalarials</option>
+            <option>Antihypertensives</option>
+            <option>Antidiabetics</option>
+            <option>GI</option>
+            <option>Supplements</option>
+            <option>Antifungals</option>
+            <option>Antihistamines</option>
+            <option>Respiratory</option>
+            <option>Cholesterol</option>
+            <option>Diuretics</option>
+            <option>Anthelmintics</option>
+            <option>ARVs</option>
+            <option>Corticosteroids</option>
+            <option>Neurology</option>
+            <option>OTC</option>
+            <option>Anticoagulants</option>
+            <option>Gynecology</option>
+            <option>Endocrinology</option>
+            <option>Antivirals</option>
+            <option>Dermatology</option>
+            <option>Urology</option>
+            <option>Psychiatry</option>
+            <option>Vaccines</option>
+            <option>Medical Supplies</option>
+            <option>Other</option>
+          </select></div>
+          <div class="field"><label for="drugRoute">Route</label><select id="drugRoute">
+            <option value="">Select route</option>
+            <option>Oral</option>
+            <option>Topical</option>
+            <option>Injection</option>
+            <option>Inhalation</option>
+            <option>Ophthalmic</option>
+            <option>Otic</option>
+            <option>Nasal</option>
+            <option>Rectal</option>
+            <option>Vaginal</option>
+            <option>Sublingual</option>
+            <option>Other</option>
+          </select></div>
+          <div class="field"><label for="drugShelf">Shelf / bin location</label><input id="drugShelf" type="text" /></div>
+          <div class="field full drug-editor-section-label">Pricing and purchasing</div>
+          <div class="field"><label for="drugCost">Cost price per selected unit (GHS)</label><input id="drugCost" type="number" min="0" step="0.01" oninput="autoCalcPrice()" /></div>
+          <div class="field"><label for="drugPrice">Selling price per selected unit (GHS)</label><input id="drugPrice" type="number" min="0" step="0.01" oninput="autoCalcCost()" /></div>
+          <div class="field"><label for="drugBarcode">Barcode</label><input id="drugBarcode" type="text" /></div>
+          <div class="field"><label for="drugSupplier">Preferred supplier</label><select id="drugSupplier"></select></div>
+          <div class="field full drug-editor-section-label">Inventory policy</div>
+          <div class="field"><label for="drugReorder">Reorder minimum</label><input id="drugReorder" type="number" min="1" value="15" /></div>
+          <div class="field"><label for="drugReorderQty">Reorder quantity</label><input id="drugReorderQty" type="number" min="0" value="0" /></div>
+          <div class="field"><label for="drugMaxStock">Maximum stock</label><input id="drugMaxStock" type="number" min="0" value="0" /></div>
+          <div class="field"><label for="drugRx">Prescription</label><select id="drugRx"><option value="false">OTC</option><option value="true">Rx</option></select></div>
+          <div class="field full drug-editor-section-label">Batch / lot stock</div>
+          <div class="field"><label for="drugOpeningQty" id="drugOpeningQtyLabel">Opening quantity</label><input id="drugOpeningQty" type="number" min="0" step="1" /></div>
+          <div class="field"><label for="drugOpeningExpiry">Opening expiry date</label><input id="drugOpeningExpiry" type="date" /></div>
+          <div class="field"><label for="drugOpeningBatch">Batch / lot no.</label><input id="drugOpeningBatch" type="text" /></div>
+          <div class="field full"><div id="drugBatchTable" class="drug-batch-table"></div></div>
+          <div class="field full"><button class="checkout-btn full-width-btn" onclick="saveDrugItem()">Save drug</button></div>
+          <div class="field full"><button class="hold-btn full-width-btn" onclick="resetDrugEditor()">Clear form</button></div>
+        </div>
+      </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-purchases" class="overlay">
+      <div class="view-subsection" data-subsection="overview">
+      <div class="section-header"><i class="ti ti-package"></i> Purchases & GRN</div>
+      <div class="ref-controls controls-between">
+        <div class="control-group">
+          <button class="checkout-btn purchase-new-btn" onclick="prepareNewPurchase()"><i class="ti ti-plus"></i> New GRN</button>
+          <button class="file-button" onclick="showWorkspaceSection('purchases','suppliers')"><i class="ti ti-building-skyscraper"></i> Suppliers</button>
+          <button class="file-button" onclick="renderPurchaseView()"><i class="ti ti-refresh"></i> Refresh</button>
+        </div>
+        <div class="control-group">
+          <div class="pill pill-draft">Draft POs <strong id="draftCount">0</strong></div>
+          <div class="pill green pill-expiry">Expiry alerts <strong id="expiryAlertCount">0</strong></div>
+        </div>
+      </div>
+      <div class="summary-grid">
+        <div class="summary-card"><small>Draft purchase orders</small><h3 id="draftOrdersCard">0</h3><p>Automatic reorder point drafts</p></div>
+        <div class="summary-card"><small>Suppliers</small><h3 id="supplierCount">0</h3><p>Supplier directory</p></div>
+        <div class="summary-card"><small>Purchase history</small><h3 id="purchaseHistoryCount">0</h3><p>Goods received notes</p></div>
+      </div>
+      </div>
+      <div class="view-subsection" data-subsection="grn">
+      <div class="section-header mt-20"><i class="ti ti-file-text"></i> Purchase / GRN workflow</div>
+      <div class="panel-card admin-form-panel">
+        <div class="admin-form">
+          <div class="field"><label for="purchaseSupplier">Supplier</label><select id="purchaseSupplier"></select></div>
+          <div class="field"><label for="purchaseInvoice">Invoice / GRN number</label><input id="purchaseInvoice" type="text" /></div>
+          <div class="field"><label for="purchaseDate">Received date</label><input id="purchaseDate" type="date" /></div>
+        </div>
+
+        <!-- GRN items table -->
+        <div class="grn-items-section">
+          <div class="grn-items-header">
+            <label class="grn-items-label">Items received</label>
+            <button class="file-button grn-add-btn" onclick="addGrnRow()"><i class="ti ti-plus"></i> Add item</button>
+          </div>
+          <div class="table-scroll-x">
+            <table id="grnTable" class="grn-table">
+              <thead>
+                <tr class="grn-head-row">
+                  <th class="grn-th">Drug name</th>
+                  <th class="grn-th">Qty</th>
+                  <th class="grn-th">Cost (GHS)</th>
+                  <th class="grn-th">Batch no.</th>
+                  <th class="grn-th">Expiry date</th>
+                  <th class="grn-action-th"></th>
+                </tr>
+              </thead>
+              <tbody id="grnRows">
+                <!-- rows injected by addGrnRow() -->
+              </tbody>
+            </table>
+          </div>
+          <div id="grnEmpty" class="grn-empty">
+            <i class="ti ti-package grn-empty-icon"></i>No items added yet. Click "Add item" to begin.
+          </div>
+          <div class="grn-total-row">
+            <span class="grn-total-label">GRN Total: <strong id="grnTotal" class="text-strong">GHS 0.00</strong></span>
+          </div>
+        </div>
+
+        <div class="mt-16">
+          <button class="checkout-btn full-width-btn" onclick="recordPurchaseGRN()"><i class="ti ti-download"></i> Receive stock</button>
+        </div>
+      </div>
+      </div>
+      <div class="view-subsection" data-subsection="suppliers">
+      <div class="section-header"><i class="ti ti-building-skyscraper"></i> Supplier directory</div>
+      <div class="panel-card admin-form-panel">
+        <div class="admin-form">
+          <div class="field"><label for="supplierName">Supplier name</label><input id="supplierName" type="text" /></div>
+          <div class="field"><label for="supplierPhone">Phone</label><input id="supplierPhone" type="text" /></div>
+          <div class="field"><label for="supplierEmail">Email</label><input id="supplierEmail" type="email" /></div>
+          <div class="field"><label for="supplierNotes">Notes</label><input id="supplierNotes" type="text" /></div>
+          <div class="field full"><button class="checkout-btn full-width-btn" onclick="saveSupplier()"><i class="ti ti-check"></i> Save supplier</button></div>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Supplier</th>
+              <th>Contact</th>
+              <th>Email</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody id="supplierRows"></tbody>
+        </table>
+        <div class="no-results is-hidden" id="noResultsSuppliers"><big></big>No suppliers registered.</div>
+      </div>
+      </div>
+      <div class="view-subsection" data-subsection="history">
+      <div class="section-header mt-20"><i class="ti ti-history"></i> Purchase History</div>
+      <div id="purchaseHistoryList"></div>
+      </div>
+    </section>
+
+    <!-- ── Expiry Management View ─────────────────────────────────────── -->
+    <section id="view-expiry" class="overlay">
+      <div class="section-header"><i class="ti ti-calendar-x"></i> Expiry Management</div>
+
+      <!-- Summary cards -->
+      <div class="expiry-summary-grid">
+        <div class="expiry-stat-card expiry-stat-expired">
+          <div class="expiry-stat-icon"><i class="ti ti-skull"></i></div>
+          <div>
+            <div class="expiry-stat-num" id="expiryCountExpired">0</div>
+            <div class="expiry-stat-label">Already expired</div>
+          </div>
+        </div>
+        <div class="expiry-stat-card expiry-stat-7">
+          <div class="expiry-stat-icon"><i class="ti ti-alarm"></i></div>
+          <div>
+            <div class="expiry-stat-num" id="expiryCount7">0</div>
+            <div class="expiry-stat-label">Expiring within 7 days</div>
+          </div>
+        </div>
+        <div class="expiry-stat-card expiry-stat-30">
+          <div class="expiry-stat-icon"><i class="ti ti-clock-exclamation"></i></div>
+          <div>
+            <div class="expiry-stat-num" id="expiryCount30">0</div>
+            <div class="expiry-stat-label">Expiring within 30 days</div>
+          </div>
+        </div>
+        <div class="expiry-stat-card expiry-stat-90">
+          <div class="expiry-stat-icon"><i class="ti ti-clock"></i></div>
+          <div>
+            <div class="expiry-stat-num" id="expiryCount90">0</div>
+            <div class="expiry-stat-label">Expiring within 90 days</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <div class="ref-controls controls-between mt-6">
+        <div class="control-group-tight">
+          <span class="expiry-filter-label">Show expiring within:</span>
+          <button class="expiry-filter-btn active" id="expiryFilter-expired" onclick="setExpiryFilter('expired')">Expired</button>
+          <button class="expiry-filter-btn" id="expiryFilter-7"       onclick="setExpiryFilter('7')">7 days</button>
+          <button class="expiry-filter-btn" id="expiryFilter-30"      onclick="setExpiryFilter('30')">30 days</button>
+          <button class="expiry-filter-btn" id="expiryFilter-90"      onclick="setExpiryFilter('90')">90 days</button>
+          <button class="expiry-filter-btn" id="expiryFilter-all"     onclick="setExpiryFilter('all')">All</button>
+        </div>
+        <div class="control-group-tight">
+          <button class="file-button" onclick="exportExpiryCSV()"><i class="ti ti-download"></i> Export CSV</button>
+          <button class="file-button" onclick="printExpiryList()"><i class="ti ti-printer"></i> Print</button>
+          <button class="file-button" onclick="showWorkspaceSection('inventory','list')"><i class="ti ti-arrow-left"></i> Back to inventory</button>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="table-wrap expiry-table-offset">
+        <table id="expiryTable">
+          <thead>
+            <tr>
+              <th onclick="sortExpiryTable(0)" data-ecol="0">Drug name <i class="ti ti-arrows-sort sort-icon"></i></th>
+              <th onclick="sortExpiryTable(1)" data-ecol="1">Batch no. <i class="ti ti-arrows-sort sort-icon"></i></th>
+              <th onclick="sortExpiryTable(2)" data-ecol="2">Category <i class="ti ti-arrows-sort sort-icon"></i></th>
+              <th onclick="sortExpiryTable(3)" data-ecol="3">Expiry date <i class="ti ti-arrows-sort sort-icon"></i></th>
+              <th onclick="sortExpiryTable(4)" data-ecol="4">Days left <i class="ti ti-arrows-sort sort-icon"></i></th>
+              <th onclick="sortExpiryTable(5)" data-ecol="5">Stock <i class="ti ti-arrows-sort sort-icon"></i></th>
+              <th onclick="sortExpiryTable(6)" data-ecol="6">Value (GHS) <i class="ti ti-arrows-sort sort-icon"></i></th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="expiryRows"></tbody>
+        </table>
+        <div class="no-results is-hidden" id="expiryNoResults">
+          <big><i class="ti ti-circle-check success-icon"></i></big>
+          No drugs match this filter — looking good!
+        </div>
+      </div>
+
+      <!-- Write-off confirmation modal -->
+      <div id="writeOffModal" class="writeoff-backdrop is-hidden" onclick="closeWriteOffModal(event)">
+        <div class="writeoff-modal">
+          <div class="writeoff-modal-header">
+            <i class="ti ti-alert-triangle writeoff-warning-icon"></i>
+            <span>Confirm stock write-off</span>
+          </div>
+          <div class="writeoff-modal-body">
+            <p id="writeOffMsg" class="writeoff-msg"></p>
+            <p class="writeoff-note">This will set the stock to <strong>0</strong> for the current branch and create an audit log entry. This action cannot be undone.</p>
+          </div>
+          <div class="writeoff-modal-actions">
+            <button class="hold-btn" onclick="closeWriteOffModal()">Cancel</button>
+            <button class="checkout-btn writeoff-confirm-btn" id="writeOffConfirmBtn" onclick="confirmWriteOff()">
+              <i class="ti ti-trash"></i> Write off stock
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-lowstock" class="overlay">
+      <div class="section-header"><i class="ti ti-alert-circle"></i> Low stock preview</div>
+      <div class="ref-controls controls-between">
+        <div><strong id="lowStockPreviewCount">0 low-stock item(s)</strong></div>
+        <div class="control-group">
+          <button class="file-button" onclick="printLowStock()"><i class="ti ti-printer"></i> Print</button>
+          <button class="file-button" onclick="exportLowStockExcel()"><i class="ti ti-file-spreadsheet"></i> Export Excel</button>
+          <button class="file-button" onclick="showWorkspaceSection('inventory','list')"><i class="ti ti-x"></i> Close</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Brand</th>
+              <th>Form</th>
+              <th>Category</th>
+              <th>Stock</th>
+              <th>Threshold</th>
+            </tr>
+          </thead>
+          <tbody id="lowStockPreviewBody"></tbody>
+        </table>
+        <div class="no-results is-hidden" id="lowStockPreviewNo"><big></big>No low-stock items found.</div>
+      </div>
+    </section>
+
+      </main>
+
+    <div id="confirmModal" class="confirm-backdrop is-hidden" onclick="closeConfirmModal(event)">
+      <div class="confirm-modal panel-card">
+        <div class="confirm-modal-header">
+          <i class="ti ti-alert-triangle"></i>
+          <span id="confirmModalTitle">Confirm action</span>
+        </div>
+        <div class="confirm-modal-body" id="confirmModalBody"></div>
+        <div class="confirm-modal-actions">
+          <button class="hold-btn" onclick="closeConfirmModal()">Cancel</button>
+          <button class="checkout-btn confirm-danger-btn" id="confirmModalAction" onclick="confirmModalAccept()"><i class="ti ti-check"></i> Confirm</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Interaction Review Modal ──────────────────────────────────────── -->
+    <div id="interactionReviewModal" class="irm-backdrop" style="display:none" onclick="if(event.target===this){document.getElementById('irmCancel').click()}">
+      <div class="irm-modal">
+        <div class="irm-header">
+          <i class="ti ti-alert-triangle irm-icon"></i>
+          <span>Drug Interaction Review Required</span>
+        </div>
+        <div class="irm-body">
+          <p class="irm-intro">Serious interaction detected between:</p>
+          <div id="irmPairs" class="irm-pairs"></div>
+          <p class="irm-prompt">Select one option before checkout:</p>
+          <div class="irm-options">
+            <label class="irm-option">
+              <input type="radio" name="irmOption" value="same-patient" />
+              <span class="irm-option-text">
+                <strong>Same patient</strong>
+                <small>Requires pharmacist / manager approval to continue</small>
+              </span>
+            </label>
+            <label class="irm-option">
+              <input type="radio" name="irmOption" value="different-patients" />
+              <span class="irm-option-text">
+                <strong>Different patients</strong>
+                <small>Each item is for a separate patient</small>
+              </span>
+            </label>
+            <label class="irm-option">
+              <input type="radio" name="irmOption" value="patient-counselled" />
+              <span class="irm-option-text">
+                <strong>Patient already counselled</strong>
+                <small>Risks explained and patient has consented</small>
+              </span>
+            </label>
+            <label class="irm-option">
+              <input type="radio" name="irmOption" value="prescriber-confirmed" />
+              <span class="irm-option-text">
+                <strong>Prescriber confirmed</strong>
+                <small>Prescribing doctor confirmed the combination</small>
+              </span>
+            </label>
+          </div>
+          <label class="irm-note-label" for="irmNote">Optional note</label>
+          <input id="irmNote" type="text" class="irm-note-input" placeholder="Add a short note (optional)" />
+        </div>
+        <div class="irm-actions">
+          <button id="irmCancel" class="hold-btn">Cancel</button>
+          <button id="irmSubmit" class="checkout-btn"><i class="ti ti-check"></i> Proceed to checkout</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Pharmacist Override Reason Modal ──────────────────────────────── -->
+    <div id="overrideReasonModal" class="irm-backdrop" style="display:none" onclick="if(event.target===this){document.getElementById('ormCancel').click()}">
+      <div class="irm-modal">
+        <div class="irm-header orm-header">
+          <i class="ti ti-shield-lock irm-icon"></i>
+          <span>Pharmacist / Manager Override</span>
+        </div>
+        <div class="irm-body">
+          <p class="irm-intro">Serious interaction(s):</p>
+          <div id="ormPairs" class="irm-pairs orm-pairs"></div>
+          <label class="irm-note-label" for="ormReason">Override reason <span style="color:var(--accent-red)">*</span></label>
+          <textarea id="ormReason" class="orm-reason-input" rows="3" placeholder="Enter your clinical reason for overriding this interaction warning..."></textarea>
+        </div>
+        <div class="irm-actions">
+          <button id="ormCancel" class="hold-btn">Cancel</button>
+          <button id="ormSubmit" class="checkout-btn writeoff-confirm-btn"><i class="ti ti-shield-check"></i> Confirm override</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Price Override Modal ───────────────────────────────────────────── -->
+    <div id="priceOverrideModal" class="irm-backdrop" style="display:none" onclick="if(event.target===this){document.getElementById('pomCancel').click()}">
+      <div class="irm-modal pom-modal">
+        <div class="irm-header pom-header">
+          <i class="ti ti-tag irm-icon"></i>
+          <span>Override Price</span>
+        </div>
+        <div class="irm-body">
+          <p class="irm-intro">Set a new selling price for:</p>
+          <div id="pomDrugName" class="pom-drug-name"></div>
+          <label class="irm-note-label" for="pomPrice">New price (GHS) <span style="color:var(--accent-red)">*</span></label>
+          <input id="pomPrice" type="number" min="0" step="0.01" class="pom-price-input" placeholder="0.00" />
+        </div>
+        <div class="irm-actions">
+          <button id="pomCancel" class="hold-btn">Cancel</button>
+          <button id="pomSubmit" class="checkout-btn"><i class="ti ti-check"></i> Apply price</button>
+        </div>
+      </div>
+    </div>
+
+    </div>
+  </div>
+
+  <!-- Third-party libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.5/purify.min.js" integrity="sha384-nszIONF2FGC59kn+pPFaRa6WUNGwsZgXZiJxJwQbym+TzcH7smolUviLgpPbNx7V" crossorigin="anonymous"></script>
+  <script src="js/chart.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" integrity="sha384-JcnsjUPPylna1s1fvi1u12X5qjY5OL56iySh75FdtrwhO/SWXgMjoVqcKyIIWOLk" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js" integrity="sha384-fCAW/rDWORTbQXSiB7mOg0QtQ5c+r0f544y6XoKjuVva0nMBlCpNUjiFeG5iMdS3" crossorigin="anonymous"></script>
+  <!-- App logic -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

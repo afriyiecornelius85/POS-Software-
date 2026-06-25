@@ -1,0 +1,21 @@
+{
+  "name": "akopharmah-pos-sync",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Akopharmah POS with a Render sync backend",
+  "main": "server.js",
+  "scripts": {
+    "build": "node scripts/build-esm-runtime.cjs",
+    "migrate-passwords": "node scripts/migrate-passwords.cjs",
+    "prestart": "npm run build",
+    "start": "node server.js",
+    "pretest": "npm run build",
+    "test": "node scripts/smoke-bootstrap.cjs && node scripts/smoke-server.cjs && node scripts/smoke-client.cjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "pg": "^8.22.0"
+  }
+}
