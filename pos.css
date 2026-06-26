@@ -375,6 +375,7 @@
     .btn-compact-cancel{padding:8px 14px;font-size:13px}
     .btn-compact-save{padding:8px 16px;font-size:13px}
     .discount-input{width:90px}
+    #daysSupplyInput{width:90px}
     .payment-fields{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
     .payment-method-select{flex:1;min-width:120px}
     .payment-amount-input{flex:1}

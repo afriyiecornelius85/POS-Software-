@@ -346,6 +346,10 @@
           <button class="rx-toggle" onclick="toggleAddCustomer()" id="addCustomerToggle" title="Add new customer"><i class="ti ti-user-plus"></i></button>
           <button class="rx-toggle" onclick="openSelectedPatientProfile()" id="patientProfileBtn" title="Patient profile"><i class="ti ti-id"></i></button>
         </div>
+        <div class="discount-row panel-card days-supply-row is-hidden" id="daysSupplyRow">
+          <label for="daysSupplyInput"><i class="ti ti-calendar-repeat"></i> Days supply</label>
+          <input id="daysSupplyInput" type="number" min="1" max="365" step="1" placeholder="e.g. 30" title="How many days this prescription covers — sets the next refill reminder" />
+        </div>
         <div class="customer-row panel-card add-customer-row" id="addCustomerRow">
           <div class="form-kicker">New customer</div>
           <div class="inline-fields">

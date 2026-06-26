@@ -1,0 +1,11 @@
+node_modules/
+Back up/
+data/akopharmah-sync.json
+data/akopharmah-sync.json.*
+var/
+*.tmp
+*.corrupt-*
+*.out.log
+*.err.log
+.env
+.env.*
